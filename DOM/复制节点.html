@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+	<div id="box1">
+		<h1>我是标题</h1>
+		<p>我是内容愧疚和空间和孔令辉科技和</p>
+	</div>
+<script>
+	var box1=document.getElementById('box1');
+	var box2=box1.cloneNode(true);//深复制
+	var box22=box1.cloneNode(false);//浅复制
+	// console.log(box2);
+	// console.log(box22);
+
+	document.body.appendChild(box2);
+	document.body.appendChild(box22);
+</script>
+
+</body>
+</html>

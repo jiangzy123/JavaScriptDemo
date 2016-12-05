@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#div1{
+		width: 456px;
+		height: 100px;
+		background: #ccc;
+	}
+</style>
+</head>
+<body>
+	<div id="div1">111111</div>
+	<div id="div2" style="width:350px; height:200px; background:red;">222222</div>
+<script>
+	var div1=document.getElementById('div1');
+	var div2=document.getElementById('div2');
+	// div1.style.width='500px';
+	// console.log(div1.style.width);//空字符串
+	// console.log(div2.style.width);//400px
+
+	// alert(div1.currentStyle['width']);//IE支持
+	// alert(div2.currentStyle.width);//IE支持
+	// alert(div2.currentStyle);//IE支持
+
+	// alert(getComputedStyle(div1,null).width);//除了IE 678其他都支持
+	// alert(getComputedStyle(div2,null)['width']);//除了IE 678其他都支持
+
+	function getStyle(obj,style){
+		if (obj.currentStyle) {
+			return obj.currentStyle[style];
+		} else{
+			return getComputedStyle(obj,null)[style];
+		};
+	}
+	var div2w=getStyle(div2,'width');
+	var w=parseInt(div2w);//转换成数字
+	alert(w);
+	alert(typeof w);
+</script>
+</body>
+</html>

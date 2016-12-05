@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<h1 id="msg"></h1>
+<script>
+var msg=document.getElementById('msg');
+
+	// 名/值 对   键/值 对   key/value
+	var json1={"name":"Jack","age":18,"sex":"男"};//json对象
+	// var json1={name:"Jack",age:18,sex:"男"};
+	// msg.innerHTML='名字：'+json1.name+'，年龄：'+json1.age+'，性别：'+json1.sex;
+
+	// alert(json1['name']);
+
+	var json2='{"name":"Jack","age":18,"sex":"男"}';//json字符串
+	var json3=eval('('+json2+')');//转化成json对象
+	msg.innerHTML='名字：'+json3.name+'，年龄：'+json3.age+'，性别：'+json3.sex;
+
+	var json={
+		"s":['北京','山东','浙江','广东'],
+		"x":[
+				['石景山','大兴','朝阳','海淀'],
+				['济南','青岛','日照','枣庄','聊城','烟台','潍坊'],
+				['杭州','温州','嘉兴','舟山'],
+				['广州','东莞','深圳','佛山','珠海']
+			],
+		"a":{"v1":"11","v2":"22"},
+		"b":[
+			{"w1":"11j","w2":"22h"},
+			{"e1":"11l","e2":"22q"},
+			{"t1":"11b","t2":"22j"}
+		]
+	};
+	// alert(json.b[1].e2);
+
+	var json4={'a':'11','b':'22','c':'33'};
+	for (var x in json4) {
+		alert(json4[x]);
+	};
+</script>
+</body>
+</html>

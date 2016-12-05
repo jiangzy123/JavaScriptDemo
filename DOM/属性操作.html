@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	.red{
+		background: red;
+	}
+	.blue{
+		background: blue;
+	}
+</style>
+</head>
+<body>
+	<div id="box11" abc="0" class="red">1111</div>
+	<div id="box22" abc="1">2222</div>
+	<button id="btn">删除</button>
+<script>
+	var box1=document.getElementById('box11');
+	var box2=document.getElementById('box22');
+	var btn=document.getElementById('btn');
+	// alert(box1.getAttribute('id'));
+	// alert(box1.id);
+	// alert(box1.getAttribute('abc'));//常用在获取自定义属性
+
+	box1.setAttribute('class','blue');
+	btn.onclick=function (){
+		box1.removeAttribute('class');//删除属性class
+	}
+</script>
+</body>
+</html>

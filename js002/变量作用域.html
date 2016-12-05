@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+
+</style>
+</head>
+<body>
+	
+<script>
+	/*var x=10;//全局变量
+	function outer(){
+		var x=20;//局部变量
+		function inner(){
+			var x=30;
+			alert(x);
+		}
+		inner();
+		alert(x);
+	}
+	outer();
+	alert(x);*/
+
+	var t='abc';
+	function test(){
+		alert(t);
+		var t='123';
+		alert(t);
+	}
+	test();
+	//执行过程
+	/*var t='abc';
+	function test(){
+		var t;
+		alert(t);
+		t='123';
+		alert(t);
+	}
+	test();*/
+
+</script>
+</body>
+</html>

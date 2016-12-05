@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#main{
+		width: 802px;
+		height: 136px;
+		overflow: hidden;
+		border: 1px solid red;
+		margin: 50px auto 0;
+	}
+	#box{
+		width: 4000px;
+		height: 136px;
+		overflow: hidden;
+	}
+	#con1,#con2{
+		float: left;
+		height: 136px;
+	}
+	#con1 img,#con2 img{
+		width: 193px;
+		height: 136px;
+		float: left;
+		margin-right: 10px;
+	}
+	.btnwrap{
+		text-align: center;
+		margin-top: 10px;
+	}
+	.btnwrap button{
+		font-size: 30px;
+		padding: 3px 8px;
+	}
+</style>
+</head>
+<body>
+<div id="main">
+	<div id="box">
+		<div id="con1">
+			<img src="images/01.jpg" alt="">
+			<img src="images/02.jpg" alt="">
+			<img src="images/03.jpg" alt="">
+			<img src="images/04.jpg" alt="">
+			<img src="images/05.jpg" alt="">
+		</div>
+		<div id="con2"></div>
+	</div>
+</div>
+<div class="btnwrap">
+	<button id="btnl"><左滚</button>
+	<button id="btnr">右滚></button>
+</div>
+<script>
+	var main=document.getElementById('main');
+	var con1=document.getElementById('con1');
+	var con2=document.getElementById('con2');
+	var btnl=document.getElementById('btnl');
+	var btnr=document.getElementById('btnr');
+	var img=con1.getElementsByTagName('img')[0];
+	var imgw=img.clientWidth+10;
+	var timer1=null,
+			timer2=null,
+			flag=true;//标记当前运动方向  假设向左为true
+	con2.innerHTML=con1.innerHTML;
+	function moveLeft(){//向左运动函数
+		main.scrollLeft++;
+		if (main.scrollLeft>=con1.clientWidth) {
+			main.scrollLeft=0;
+		};
+		if ((main.scrollLeft%imgw)==0) {
+			clearInterval(timer1);
+			timer2=setTimeout(function (){//2秒后走一张图片
+				timer1=setInterval(moveLeft,15);
+			},2000);
+		};
+	};
+	timer1=setInterval(moveLeft,15);//进入页面执行
+	// timer1=setInterval('moveLeft()',15);
+	function moveRight(){//向右运动函数
+		main.scrollLeft--;
+		if (main.scrollLeft<=0) {
+			main.scrollLeft=con1.clientWidth;
+		};
+		if ((main.scrollLeft%imgw)==0) {
+			clearInterval(timer1);
+			timer2=setTimeout(function (){//2秒后走一张图片
+				timer1=setInterval(moveRight,15);
+			},2000);
+		};
+	};
+	btnr.onclick=function (){
+		clearInterval(timer1);
+		clearTimeout(timer2);
+		timer1=setInterval(moveRight,15);
+		flag=false;
+	}
+	btnl.onclick=function (){
+		clearInterval(timer1);
+		clearTimeout(timer2);
+		timer1=setInterval(moveLeft,15);
+		flag=true;
+	}
+	main.onmouseenter=function (){
+		clearInterval(timer1);
+		clearTimeout(timer2);
+	}
+	main.onmouseleave=function (){
+		if (flag) {//判断运动方向
+			timer1=setInterval(moveLeft,15);
+		} else{
+			timer1=setInterval(moveRight,15);
+		};
+	}
+</script>
+</body>
+</html>

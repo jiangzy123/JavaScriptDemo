@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+#box{
+	position: relative;
+	width: 500px;
+}
+input{
+	color: red;
+	width: 400px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 22px;
+}
+span{
+	font-size: 22px;
+	color: #ccc;
+	position: absolute;
+	top: 2px;
+	right: 18px;
+	/* background: green; */
+	width: 400px;
+	height: 30px;
+	line-height: 30px;
+}
+</style>
+</head>
+<body>
+	<div id="box">
+		电话号码：<input type="text" name="" value="">
+		<span>请输入电话号码</span>
+	</div>
+	<script>
+	var box=document.getElementById('box');
+	var ipt=box.getElementsByTagName('input')[0];
+	var spa=box.getElementsByTagName('span')[0];
+	spa.onclick=function (){
+		spa.style.display='none';
+		ipt.focus();
+	}
+	ipt.onblur=function (){
+		if (ipt.value=='') {
+			spa.style.display='block';
+		};
+	}
+	</script>
+</body>
+</html>

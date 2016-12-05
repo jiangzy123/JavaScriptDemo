@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>老王的页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<button id="btn">弹窗</button>
+<h1 id="con"></h1>
+<script>
+	var x=0; 
+	setInterval(function (){
+		x++;
+		con.innerHTML=x;
+	},1000)
+	btn.onclick=function (){
+		// con.innerHTML=location.href;
+		// location.assign('https://www.baidu.com/');
+		// location.reload();
+		// location.replace('https://www.baidu.com/');
+		location.href='my.html';
+		// location='my.html';
+	}
+</script>
+</body>
+</html>

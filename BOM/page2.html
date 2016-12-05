@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	span,em{
+		font-size: 40px;
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h1>恭喜，付款成功！</h1>
+	<button id="btn">返回上一页</button>
+	<span><em id="time">5</em>秒后自动返回上一页</span>
+<script>
+var btn=document.getElementById('btn');
+var time=document.getElementById('time');
+btn.onclick=function (){
+	// location.href='page1.html';
+	// window.history.back();
+	window.history.go(-1);
+}
+var num=5,timer=null;
+timer=setInterval(function (){
+	num--;
+	if (num<=0) {
+		// location.href='page1.html';
+		// window.history.back();
+		window.history.go(-1);
+	};
+	time.innerHTML=num;
+},1000);
+</script>
+</body>
+</html>

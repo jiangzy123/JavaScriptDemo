@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#wrap{
+		width: 772px;
+		height: 136px;
+		overflow: hidden;
+		margin: 50px auto 0;
+		border: 1px solid red;
+		/* overflow-x: scroll; */
+	}
+	#con{
+		width: 4000px;
+		height: 136px;
+		overflow: hidden;
+	}
+	#con img{
+		width: 193px;
+		height: 136px;
+		float: left;
+	}
+	#box1,#box2{
+		float: left;
+		height: 136px;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="con">
+		<div id="box1">
+			<img src="images/01.jpg" alt="">
+			<img src="images/02.jpg" alt="">
+			<img src="images/03.jpg" alt="">
+			<img src="images/04.jpg" alt="">
+		</div>
+		<div id="box2">
+			
+		</div>
+	</div>
+</div>
+<script>
+var wrap=document.getElementById('wrap');
+var box1=document.getElementById('box1');
+var box2=document.getElementById('box2');
+var img1=wrap.getElementsByTagName('img')[0];
+box2.innerHTML=box1.innerHTML;
+var maxWidth=box1.clientWidth;
+var x=0,timer=null;
+function move(){
+	timer=setInterval(function (){
+		x+=2;
+		if (x>=maxWidth) {
+			wrap.scrollLeft=0;
+			x=0;
+		};
+		wrap.scrollLeft=x;
+	},30);
+}
+move();//进入页面自动执行
+wrap.onmouseenter=function (){
+	clearInterval(timer);
+}
+wrap.onmouseleave=function (){
+	move();
+}
+</script>
+</body>
+</html>

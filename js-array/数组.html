@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+
+</style>
+</head>
+<body>
+	<script>
+	// var arr1=[];
+	var arr1=["a", "b", "c"];
+	arr1[0]='aa';
+	arr1[1]='bb';
+	arr1[2]='cc';
+	// console.log(arr1);
+
+	// var arr2=new Array();
+	var arr2=new Array('1','2','3');
+	arr2[0]='11';
+	arr2[1]='22';
+	arr2[2]='33';
+	// console.log(arr2);
+
+	var arr12=arr1.concat(arr2);
+	// console.log(arr12);
+
+	var arr3=new Array(4);//指定数组长度为4
+	arr3[0]='q1';
+	arr3[1]='q2';
+	arr3[2]='q3';
+	arr3[3]='q4';
+	arr3[4]='q5';
+	// console.log(arr3.length);
+	// console.log(arr3);
+	// console.log(arr3[2]);
+
+	var newlen=arr3.push('q6','q7');
+	// console.log(newlen);
+	// console.log(arr3);
+
+	var newlen2=arr3.unshift('q0');
+	// console.log(newlen2);
+	// console.log(arr3);
+
+	// var x1=arr3.pop();
+	// console.log(x1);
+	// console.log(arr3);
+
+	// var x2=arr3.shift();
+	// console.log(x2);
+	console.log(arr3);
+	// var newarr=arr3.splice(1,3);//从1位置开始删除3个元素
+	// var newarr=arr3.splice(3);//从3位置开始删除后面所有元素
+	// var newarr=arr3.splice(1,2,'aa','bb');
+	// console.log(arr3);
+	// console.log(newarr);
+
+	// var newarr=arr3.slice(1,3);
+	// console.log(newarr);
+
+	// var str=arr3.join();
+	// var str=arr3.join('.');
+	// var str=arr3.join('');
+	// console.log(str);
+	// console.log(typeof str);
+
+	arr3.reverse();
+	console.log(arr3);
+
+	// console.log(typeof arr);//object
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+	<button id="btn">弹窗</button>
+	<h1 id="con"></h1>
+<script>
+	btn.onclick=function (){
+		// alert('弹窗框里面的内容');
+
+		/*var boo=confirm('你是老王吗?');
+		if (boo) {
+			console.log(boo);
+			con.innerHTML='你是小王';
+		} else{
+			console.log(boo);
+			con.innerHTML='你是老王';
+		};*/
+
+		var val=prompt('我喜欢什么动物？','');
+		console.log(val);
+		if (val==null) {
+			con.innerHTML='您无权访问！';
+		} else{
+			if (val=='laowang') {
+				window.open('my.html','','');
+			} else{
+				con.innerHTML='您的答案错误！';
+			};
+		};
+	}
+</script>
+</body>
+</html>

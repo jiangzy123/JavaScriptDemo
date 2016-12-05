@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#box{
+		width: 260px;
+		margin: 50px auto 0;
+		padding: 10px 0 0 10px;
+		border: 1px solid #000;
+	}
+	.con{
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+	.con img{
+		width: 100px;
+		height: 100px;
+		float: left;
+	}
+	.con span{
+		width: 140px;
+		float: left;
+		font-size: 16px;
+		margin:0 0 10px 10px;
+	}
+</style>
+</head>
+<body>
+<div id="box">
+	<!-- <div class="con">
+		<img src="01.jpg" alt="">
+		<span>姓名：张三</span>
+		<span>年龄：22</span>
+		<span>职业：码农</span>
+	</div> -->
+</div>
+
+<script>
+	var arr=[
+		{'img':'01.jpg','name':'李四','age':24,'zhiye':'html5开发'},
+		{'img':'02.jpg','name':'王五','age':28,'zhiye':'码农'},
+		{'img':'01.jpg','name':'李四','age':24,'zhiye':'html5开发'},
+		{'img':'02.jpg','name':'王五','age':28,'zhiye':'码农'},
+		{'img':'02.jpg','name':'王六','age':28,'zhiye':'码农'}
+	];
+	var box=document.getElementById('box');
+	for (var i = 0; i < arr.length; i++) {
+		box.innerHTML+='<div class="con"><img src="'+arr[i].img+'" alt=""><span>姓名：'+arr[i].name+'</span><span>年龄：'+arr[i].age+'</span><span>职业：'+arr[i].zhiye+'</span></div>';
+	};
+</script>
+</body>
+</html>

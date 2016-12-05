@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#con{
+		width: 287px;
+		height: 612px;
+		position: fixed;
+		right: 100px;
+		top: 20px;
+		background: url(1.png) 0 0 no-repeat;
+	}
+	#img{
+		width: 60px;
+		height: 60px;
+		border: 2px solid transparent;
+		position: absolute;
+		top: 42px;
+		left: 8px;
+	}
+	#img:hover{
+		border: 2px solid blue;
+	}
+	#msg{
+		width: 277px;
+		height: 352px;
+		background: url(2.png) 0 0 no-repeat;
+		position: absolute;
+		left: -294px;
+		top: -50px;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		display: none;
+	}
+</style>
+</head>
+<body>
+<div id="con">
+	<div id="img">
+		<p id="msg"></p>
+	</div>
+</div>
+<script>
+	var img=document.getElementById('img');
+	var msg=document.getElementById('msg');
+	var t=-50,o=0,timer1=null,timer2=null;
+	img.onmouseenter=function (){
+		clearTimeout(timer1);
+		clearInterval(timer2);
+		timer1=setTimeout(function (){
+			msg.style.display='block';
+			timer2=setInterval(function (){
+				t+=2;
+				o+=4;
+				if (t>=0) {
+					t=0;
+					o=100;
+					clearInterval(timer2);
+				};
+				msg.style.top=t+'px';
+				msg.style.opacity=o/100;
+				msg.style.filter='alpha(opacity:'+o+')';
+			},10);
+		},300);
+	}
+	img.onmouseleave=function (){
+		clearTimeout(timer1);
+		clearInterval(timer2);
+		timer1=setTimeout(function (){
+			timer2=setInterval(function (){
+				t-=2;
+				o-=4;
+				if (t<=-50) {
+					t=-50;
+					o=0;
+					msg.style.display='none';
+					clearInterval(timer2);
+				};
+				msg.style.top=t+'px';
+				msg.style.opacity=o/100;
+				msg.style.filter='alpha(opacity:'+o+')';
+			},10);
+		},300);
+	}
+</script>
+</body>
+</html>

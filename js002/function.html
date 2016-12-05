@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+#txt{}
+</style>
+</head>
+<body>
+
+<h1 id="txt">点击我试试</h1>
+
+<script>
+	var txt=document.getElementById('txt');
+	txt.onclick=function (){//匿名函数
+		alert('点击h1标签');
+	}
+
+// 变量声明和函数声明会提升到当前作用域顶部
+
+	// test();//调用执行
+	var a=0;
+	function test(){//函数声明
+		alert('111');
+	}
+	// 执行顺序
+	/*var a;
+	function Test(){
+		alert('123');
+	}
+	Test();
+	a=0;*/
+	
+	function test2(a,b){//a b形参
+		alert(a*b);
+		return '你好';
+	}
+	// test2(2,3);//2 3实参
+
+	var test3=function (a,b){//函数表达式
+		alert(a+b);
+	}
+	// test3(2,3);
+
+	/*function (){//匿名函数 报错
+		alert('222');
+	}*/
+
+	/*(function (){//自执行匿名函数
+		alert('333');
+	})();*/
+
+	/*(function (a,b){//自执行匿名函数
+			alert(a-b);
+	})(7,3);*/
+
+</script>
+</body>
+</html>

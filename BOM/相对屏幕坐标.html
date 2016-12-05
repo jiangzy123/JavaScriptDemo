@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	/* *{margin:0; padding:0; list-style:none;} */
+	body{height: 2000px;}
+</style>
+</head>
+<body>
+<button id="btn">获取</button>
+<h1 id="con"></h1>
+<h1 id="con2"></h1>
+<script>
+	var btn=document.getElementById('btn');
+	var con=document.getElementById('con');
+	btn.onclick=function (){
+		con.innerHTML='窗口距离屏幕左边:'+window.screenLeft+'，窗口距离屏幕上边:'+window.screenTop;
+		con2.innerHTML='当前可视区的宽：'+document.documentElement.clientWidth+'，当前可视区的高：'+document.documentElement.clientHeight+'，文档高度：'+document.documentElement.offsetHeight;
+	}
+</script>
+</body>
+</html>

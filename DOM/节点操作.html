@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+	<ul id="list">
+		<li>11</li>
+		<li>22</li>
+		<li>33</li>
+	</ul>
+	<button id="btn">删除</button>
+<script>
+	var list=document.getElementById('list');
+	var btn=document.getElementById('btn');
+	var lis=list.children;
+	var newLi=document.createElement('li');//创建节点
+	// var txtNode=document.createTextNode('新建的li');//创建文本节点
+	// alert(txtNode.nodeName);// #text
+	// newLi.appendChild(txtNode);//把文本节点插入新建节点中
+	newLi.innerHTML='新建的li222';
+	// list.appendChild(newLi);
+	// list.insertBefore(newLi,lis[1]);
+	list.replaceChild(newLi,lis[1]);
+
+	btn.onclick=function (){
+		list.removeChild(lis[2]);
+	}
+</script>
+</body>
+</html>

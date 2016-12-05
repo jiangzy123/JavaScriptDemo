@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+li{
+	font-size: 30px;
+	margin: 10px;
+	background-color:#ccc;
+}
+</style>
+</head>
+<body>
+	<ul id="list">
+		<li>111</li>
+		<li style="background:green;">222</li>
+		<li>333</li>
+		<li>444</li>
+		<li>555</li>
+	</ul>
+	<ul id="list2">
+		<li>111</li>
+		<li style="background:green;">222</li>
+		<li>333</li>
+	</ul>
+
+	<script>
+	//获取到的是单个元素
+	var list=document.getElementById('list');
+	var lis=list.getElementsByTagName('li');
+	// lis=[li,li,li];
+	// console.log(lis.length);
+	/*lis[0].onclick=function (){
+		lis[0].style.backgroundColor='red';
+	}
+	lis[1].onclick=function (){
+		lis[1].style.backgroundColor='red';
+	}
+	lis[2].onclick=function (){
+		lis[2].style.backgroundColor='red';
+	}*/
+	for (var i = 0; i < lis.length; i++) {
+		lis[i].onclick=function (){
+			this.style.backgroundColor='red';
+		}
+	};
+	console.log(i);
+
+
+	/*var li2=list.getElementsByTagName('li')[1];
+	li2.onclick=function (){
+		li2.style.backgroundColor='red';
+	}*/
+	</script>
+</body>
+</html>

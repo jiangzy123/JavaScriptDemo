@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<div id="box1">
+	<div class="con">
+		<span>我是span标签111</span>
+	</div>
+	<div class="con">
+		<span>我是span标签222</span>
+	</div>
+	<div class="con">
+		<span>我是span标签333</span>
+	</div>
+</div>
+<div id="box2">
+	<div class="con">
+		<span>我是span标签444</span>
+	</div>
+	<div class="con">
+		<span>我是span标签555</span>
+	</div>
+</div>
+<script type="text/javascript" src="my.js"></script>
+<script>
+	// var cons=document.getElementsByClassName('con');
+	// alert(cons.length);
+
+	// var tags=document.getElementsByTagName('*');
+	// var tags=document.all;//低版本IE
+	// alert(tags.length);
+
+	/*var tags=document.all?document.all:document.getElementsByTagName('*');
+	var arr=[];
+	for (var i = 0; i < tags.length; i++) {
+		if (tags[i].className=='con') {
+			arr.push(tags[i]);
+		};
+	};*/
+	// alert(arr.length);
+	// alert(arr[3].innerHTML);
+
+	/*function byClass1(oClass){//全局获取
+		var tags=document.all?document.all:document.getElementsByTagName('*');
+		var arr=[];
+		for (var i = 0; i < tags.length; i++) {
+			if (tags[i].className==oClass) {
+				arr.push(tags[i]);
+			};
+		};
+		return arr;
+	}*/
+	// var cons=byClass1('con');
+	// alert(cons.length);
+	// alert(cons[3].innerHTML);
+
+	/*function byClass2(parentID,oClass){//局部获取
+		var parent=document.getElementById(parentID);
+		var tags=parent.all?parent.all:parent.getElementsByTagName('*');
+		var arr=[];
+		for (var i = 0; i < tags.length; i++) {
+			if (tags[i].className==oClass) {
+				arr.push(tags[i]);
+			};
+		};
+		return arr;
+	}*/
+	var cons=byClass2('box1','con');
+	alert(cons.length);
+	alert(cons[2].innerHTML);
+</script>
+</body>
+</html>

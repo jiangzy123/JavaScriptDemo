@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	body{
+		height: 1400px;
+	}
+	#outer{
+		width: 500px;
+		height: 300px;
+		border: 1px solid #000;
+		overflow: auto;
+		margin: 50px auto 0;
+	}
+	#inner{
+		width: 800px;
+		height: 600px;
+		background: #ccc;
+		font-size: 30px;
+	}
+	#totop{
+		width: 100px;
+		height: 140px;
+		line-height: 140px;
+		text-align: center;
+		font-size: 18px;
+		background: red;
+		position: fixed;
+		right: 0;
+		bottom: 40px;
+	}
+</style>
+</head>
+<body>
+
+<div id="outer">
+	<div id="inner">问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害问看看就好看vgjhbk可好看加空格吧黑胡椒空间哈哈哈客户好哈哈哈看就好了客户可厉害</div>
+</div>
+<button id="btn">获取</button>
+<p id="totop">返回顶部</p>
+<script>
+var outer=document.getElementById('outer');
+var btn=document.getElementById('btn');
+var totop=document.getElementById('totop');
+btn.onclick=function (){
+	// console.log(outer.scrollLeft);
+	// console.log(outer.scrollTop);
+	// console.log(outer.scrollWidth);
+	// console.log(outer.scrollHeight);
+	outer.scrollLeft=200;
+	outer.scrollTop=100;
+}
+totop.onclick=function (){
+	var scrollTop=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+	var time=setInterval(function (){
+		scrollTop-=20;
+		if (scrollTop<=0) {
+			clearInterval(time);
+		};
+		document.documentElement.scrollTop=scrollTop;
+		document.body.scrollTop=scrollTop;
+		window.pageYOffset=scrollTop;
+	},2);
+}
+</script>
+</body>
+</html>

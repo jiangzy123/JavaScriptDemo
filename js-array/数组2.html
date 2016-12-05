@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+
+</style>
+</head>
+<body>
+	<script>
+	var arr1=['ad1','ac2','bt3','ca4','bf3'];
+	/*console.log(arr1);
+	arr1.sort();
+	console.log(arr1);*/
+
+	for (var x in arr1){
+		console.log(arr1[x]);
+	}
+
+	var arr2=['5','21','41','5','18','41','5','75'];
+	// console.log(arr2);
+	// arr2.sort(function (a,b){return a-b;});//升序排列
+	// arr2.sort(function (a,b){return b-a;});//降序排列
+	// console.log(arr2);
+
+	/*var newarr=[];
+	for (var i = 0; i < arr2.length; i++) {
+		if (arr2[i]==arr2[i+1]) {
+			continue;
+		};
+		newarr.push(arr2[i]);
+	};
+	console.log(newarr);*/
+
+	function resetArr(arr){
+		arr.sort(function (a,b){return a-b;});
+		var newarr=[];
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i]==arr[i+1]) {
+				continue;
+			};
+			newarr.push(arr[i]);
+		};
+		return newarr;
+	}
+
+	// var arr3=resetArr(arr2);
+	// console.log(arr3);
+
+	/*var arr4=[12,45,45,12,2,8,5,85,5,12];
+	console.log(arr4);
+	var arr5=resetArr(arr4);
+	console.log(arr5);*/
+
+	var arr6=[[1,2,3],['a','b','c'],['你','好','吗']];
+	console.log(arr6[1][2]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#box{
+		width: 60px;
+		position: fixed;
+		right: 0px;
+		bottom: 100px;
+		height: 130px;
+	}
+	#box div{
+		position: relative;
+		cursor: pointer;
+		width: 60px;
+		height: 60px;
+		margin-bottom: 10px;
+	}
+	#box div span{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		background: red;
+		color: #fff;
+		font-size: 24px;
+		z-index: 200;
+	}
+	#box div p{
+		width: 160px;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		background: red;
+		color: #fff;
+		font-size: 24px;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		z-index: 10;
+	}
+</style>
+</head>
+<body>
+
+<div id="box">
+	<div>
+		<span>1a</span>
+		<p>ToTop</p>
+	</div>
+	<div>
+		<span>2a</span>
+		<p>反馈</p>
+	</div>
+	<div>
+		<span>3a</span>
+		<p>固化快</p>
+	</div>
+</div>
+
+<script>
+var box=document.getElementById('box');
+var divs=box.getElementsByTagName('div');
+var ps=box.getElementsByTagName('p');
+var x=0,y=0,z=0,timer1=null,timer2=null,timer3=null;
+
+function move(v,timer,n){
+	divs[v].onmouseenter=function (){
+		clearInterval(timer);
+		timer=setInterval(function (){
+			n-=4;
+			if (n<=-160) {
+				n=-160;
+				clearInterval(timer);
+			};
+			ps[v].style.left=n+'px';
+		},10);
+	}
+	divs[v].onmouseleave=function (){
+		clearInterval(timer);
+		timer=setInterval(function (){
+			n+=4;
+			if (n>=0) {
+				n=0;
+				clearInterval(timer);
+			};
+			ps[v].style.left=n+'px';
+		},10);
+	}
+}
+move(0,timer1,x);
+move(1,timer2,y);
+move(2,timer3,z);
+
+</script>
+</body>
+</html>

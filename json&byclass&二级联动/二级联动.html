@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	.cityList{
+		width: 440px;
+		margin: 50px auto 0;
+	}
+	select{
+		width: 150px;
+		font-size: 16px;
+	}
+</style>
+</head>
+<body>
+<div class="cityList">
+	<span>省/市</span>
+	<select name="" id="sheng">
+		<option value="-1">请选择</option>
+	</select>
+	<span>市/县</span>
+	<select name="" id="shi">
+		<option value="-1">请选择</option>
+	</select>
+</div>
+
+<script>
+	var sheng=document.getElementById('sheng');
+	var shi=document.getElementById('shi');
+	var sf=['北京','山东','浙江','广东'];
+	var sx=[
+				['石景山','大兴','朝阳','海淀'],
+				['济南','青岛','日照','枣庄','聊城','烟台','潍坊'],
+				['杭州','温州','嘉兴','舟山'],
+				['广州','东莞','深圳','佛山','珠海']
+			];
+	for (var i = 0; i < sf.length; i++) {
+		sheng.innerHTML+='<option value="'+i+'">'+sf[i]+'</option>';
+	};
+	sheng.onchange=function (){
+		var optVal='<option value="-1">请选择</option>';
+		if (sheng.value=='-1') {
+			shi.innerHTML=optVal;
+			return false;
+		};
+		for (var i = 0; i < sx[sheng.value].length; i++) {
+			optVal+='<option value="'+i+'">'+sx[sheng.value][i]+'</option>';
+			shi.innerHTML=optVal;
+		};
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+#box h1{
+	color: red;
+}
+#box p{
+	font-size: 30px;
+	color: green;
+}
+</style>
+</head>
+<body>
+	<div id="box">
+		<!-- <h1>我是文章标题</h1>
+		<p>文章内容客户高科技和客户汇款后</p> -->
+	</div>
+	<input id="ipt" type="text" name="" value="">
+	<button id="btn">获取</button>
+	<script>
+	var box=document.getElementById('box');
+	// console.log(box.innerHTML);//获取
+	// box.innerHTML='修改过后的值1111';
+	// box.innerText='修改过后的值2222';
+
+	// box.innerHTML='<h1>我是文章标题</h1><p>文章内容客户高科技和客户汇款后</p>';
+	// box.innerText='<h1>我是文章标题</h1><p>文章内容客户高科技和客户汇款后</p>';
+
+	var ipt=document.getElementById('ipt');
+	var btn=document.getElementById('btn');
+	btn.onclick=function (){
+		// alert(ipt.value);//获取
+		ipt.value='老王';//设置
+	}
+	</script>
+</body>
+</html>

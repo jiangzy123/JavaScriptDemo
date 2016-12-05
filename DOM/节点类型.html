@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+	<div id="box1">1111<span>标签11</span></div>
+	<div id="box2"><!-- 注释abc -->2222<span>标签22</span></div>
+<script>
+	var box1=document.getElementById('box1');//元素节点
+	var box2=document.getElementById('box2');//元素节点
+	var txt=box1.firstChild;//文本节点
+	// var txt2=box1.innerText;// 字符串
+	var attr=box1.getAttributeNode('id');//属性节点
+	var comment=box2.firstChild;//注释节点
+	var doc=document;//文档节点
+
+	/*console.log(box1.nodeName);// DIV
+	console.log(txt.nodeName);// #text
+	console.log(attr.nodeName);// id
+	console.log(comment.nodeName);// #comment
+	console.log(doc.nodeName);// #document*/
+
+	/*console.log(box1.nodeValue);
+	// console.log(box1.innerHTML);
+	// console.log(box1.innerText);
+	console.log(txt.nodeValue);
+	console.log(attr.nodeValue);
+	console.log(comment.nodeValue);
+	console.log(doc.nodeValue);*/
+
+	console.log(box1.nodeType);
+	console.log(txt.nodeType);
+	console.log(attr.nodeType);
+	console.log(comment.nodeType);
+	console.log(doc.nodeType);
+
+	/*if (attr.nodeType==2) {
+		alert('是属性节点')
+	};*/
+</script>
+</body>
+</html>

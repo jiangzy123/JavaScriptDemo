@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#main{
+		width: 600px;
+		padding: 10px 10px 0;
+		border: 1px solid #333;
+		background: #EDE2E2;
+		margin: 20px auto 0;
+	}
+	#main h1{
+		margin: 20px 0 10px;
+	}
+	#tit{
+		width: 537px;
+		padding: 0 5px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+	#con{
+		width: 539px;
+		height: 100px;
+		padding: 5px;
+		font-size: 16px;
+	}
+	#ipt{
+		text-align: right;
+		font-size: 12px;
+		color: green;
+	}
+	#send{
+		font-size: 20px;
+		padding: 4px 10px;
+	}
+	#list li{
+		margin-bottom: 10px;
+		position: relative;
+		overflow: hidden;
+	}
+	#list li h2{
+		font-size: 20px;
+		background: #B9A5A5;
+		line-height: 30px;
+	}
+	#list li p{
+		font-size: 16px;
+		padding: 8px 0;
+		background: #E0CCCC;
+	}
+	#list li em{
+		position: absolute;
+		right: 5px;
+		top: 0;
+		font-size: 20px;
+		color: red;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body>
+<div id="main">
+	<div>
+		<label for="tit">标题:</label>
+		<input id="tit" type="text" name="" value="">
+	</div>
+	<div>
+		<label for="con">内容:</label>
+		<textarea name="" id="con"></textarea>
+	</div>
+	<div id="ipt">
+		还可以输入<var id="num">200</var>个字
+	</div>
+	<button id="send">发布</button>
+	<h1>显示内容</h1>
+	<ul id="list">
+		<!-- <li><h2>来看还难看了了困</h2><p>科技办公交卡不开机加不加班空间还不开机不开机不开机吧看就好了空间被科技部机吧看就好了空间被科技部机吧看就好了空间被科技部</p><em>X</em></li> -->
+	</ul>
+</div>
+<script type="text/javascript" src="tween.js"></script>
+<script>
+	var tit=document.getElementById('tit');
+	var con=document.getElementById('con');
+	var ipt=document.getElementById('ipt');
+	var num=document.getElementById('num');
+	var send=document.getElementById('send');
+	var list=document.getElementById('list');
+	var timer=null,timer2=null;
+	send.onclick=function (){
+		if (con.value.length>200) {
+			con.value=con.value.substring(0,200);
+		};
+		var newLi=document.createElement('li');
+		newLi.innerHTML='<h2>'+tit.value+'</h2><p>'+con.value+'</p><em>X</em>';
+		function move(){
+			var start=0;
+			var change=newLi.clientHeight;
+			var minstep=0;
+			var maxstep=10;
+			newLi.style.height='0px';
+			clearInterval(timer2);
+			timer2=setInterval(function (){
+				minstep++;
+				if (minstep>maxstep) {
+					clearInterval(timer2);
+				};
+				// start+=change/maxstep;
+				// newLi.style.height=start+'px';
+				newLi.style.height=Tween.Bounce.easeOut(minstep,start,change,maxstep)+'px';
+			},30);
+		}
+		if (list.children.length==0) {//第一次发送
+			list.appendChild(newLi);
+			move();
+			tit.value='';
+			con.value='';
+			num.innerHTML=200;
+			ipt.style.color='green';
+		} else{//非第一次发送
+			list.insertBefore(newLi,list.children[0]);
+			move();
+			tit.value='';
+			con.value='';
+			num.innerHTML=200;
+			ipt.style.color='green';
+		};
+		var rms=list.getElementsByTagName('em');
+		for (var i = 0; i < rms.length; i++) {
+			rms[i].onclick=function (){
+				var targetLi=this.parentNode;
+				var start=targetLi.clientHeight;
+				var change=-start;
+				var minstep=0;
+				var maxstep=10;
+				clearInterval(timer2);
+				timer2=setInterval(function (){
+					minstep++;
+					if (minstep>maxstep) {
+						clearInterval(timer2);
+						list.removeChild(targetLi);
+					};
+					// start+=change/maxstep;
+					// targetLi.style.height=start+'px';
+					targetLi.style.height=Tween.Bounce.easeOut(minstep,start,change,maxstep)+'px';
+				},30);
+			}
+		};
+	}
+
+	con.onfocus=function (){
+		timer=setInterval(function (){
+			var lenMax=200;
+			var lenTxt=con.value.length;
+			lenMax=lenMax-lenTxt;
+			if (lenMax<0) {
+				ipt.style.color='red';
+			} else{
+				ipt.style.color='green';
+			};
+			num.innerHTML=lenMax;
+		},60);
+	}
+	con.onblur=function (){
+		clearInterval(timer);
+	}
+</script>
+</body>
+</html>

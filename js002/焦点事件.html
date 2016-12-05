@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+
+</style>
+</head>
+<body>
+	账号：<input type="text" name="" value="请输入账号">
+	密码：<input type="text" name="" value="请输入密码">
+	<script>
+	var userName=document.getElementsByTagName('input')[0];
+	var userPass=document.getElementsByTagName('input')[1];
+	userName.onfocus=function (){
+		if (userName.value=='请输入账号') {
+			userName.value='';
+		};
+	}
+	userName.onblur=function (){
+		if (userName.value=='') {
+			userName.value='请输入账号';
+		}
+	}
+
+	userPass.onchange=function (){
+		alert('密码被修改');
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+	/*var x=0 , y=0 , c=1;
+	function add(n) {n=n+1;}
+	x=add(c);
+	alert(x);
+	function add(n) {n=n+3; return n;}
+	y=add(c);
+	alert(y);*/
+
+	//执行过程
+	/*var x;
+	var y;
+	var c;
+	// function add(n) {n=n+1;}
+	function add(n) {n=n+3; return n;}
+	x=0; 
+	y=0;
+	c=1;
+	x=add(c);//4
+	alert(x);//4
+	y=add(c);//4
+	alert(y);//4*/
+
+	// alert((0,3));//3
+	// alert((3,0));//0
+
+	/*if (1,0) {//返回0
+		alert('123');
+	} else{
+		alert('abc');
+	};*/
+
+	/*if (0,-2) {//返回-2
+		alert('123');
+	} else{
+		alert('abc');
+	};*/
+
+	/*var k=0;
+	for(var i=0, v=0; i<6, v<9; i++, v++){//返回v<9
+	    k = i + v;
+	}
+	alert(k);//16*/
+
+
+	/*for (var i = 0; i < 5; i++) {
+		setTimeout(function (){//异步代码
+			console.log(i);//打印 5个5
+		},0);
+	};*/
+
+	/*for (var i = 0; i < 5; i++) {
+		
+	};
+	setTimeout(function (){//异步代码
+		console.log(i);//打印1个5
+	},0);*/
+
+	/*function fn(){
+		console.log('first' );
+		setTimeout(function (){//同步代码执行完之后才执行异步代码
+			console.log( 'second' );
+		},0);
+	}
+	for (var i= 0; i < 5; i++) {
+		fn();
+	}*/
+</script>
+</body>
+</html>

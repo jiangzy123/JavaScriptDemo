@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+#tab{
+	width: 240px;
+	margin: 50px auto 0;
+	border: 1px solid #000;
+}
+#tab h1{
+	overflow: hidden;
+}
+#tab h1 span{
+	float: left;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #ccc;
+	font-size: 20px;
+	color: red;
+	cursor: pointer;
+}
+#tab div{
+	width: 240px;
+	overflow: hidden;
+}
+#tab div img{
+	width: 240px;
+	height: 320px;
+	display: block;
+}
+#tab div h2{
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 26px;
+}
+
+#tab h1 .show{
+	background: green;
+	color: #fff;
+}
+</style>
+</head>
+<body>
+	<div id="tab">
+		<h1>
+			<span class="show">电影1</span>
+			<span>电影2</span>
+			<span>电影3</span>
+		</h1>
+		<div>
+			<img src="01.jpg" alt="">
+			<h2>战狼</h2>
+		</div>
+	</div>
+	<script>
+	var tab=document.getElementById('tab');
+	var spans=tab.getElementsByTagName('span');
+	var img=tab.getElementsByTagName('img')[0];
+	var tit=tab.getElementsByTagName('h2')[0];
+	var arr=[['01.jpg','02.jpg','03.jpg'],['战狼','速度与激情8','暴疯语']];
+	for (var i = 0; i < spans.length; i++) {
+		spans[i].onclick=function (){
+			for (var i = 0; i < spans.length; i++) {
+				if (spans[i]==this) {
+					this.className='show';
+					img.src=arr[0][i];
+					tit.innerHTML=arr[1][i];
+				}else{
+					spans[i].className='';
+				};
+			};
+		}
+	};
+
+
+	</script>
+</body>
+</html>

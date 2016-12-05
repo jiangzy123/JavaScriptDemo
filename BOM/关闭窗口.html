@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<body>
+<input type="button" value="打开窗口"/>
+<input type="button" value="调整窗口"/>
+<script type="text/javascript">
+var ipts=document.getElementsByTagName('input');
+var myWindow;
+
+ipts[0].onclick=function (){
+	myWindow=window.open('','','width=400,height=200,left=200,top=100');
+	myWindow.document.write("新打开的窗口");
+}
+ipts[1].onclick=function (){
+	// myWindow.close();
+	myWindow.resizeTo(600,300);//可以调整
+}
+</script>
+</body>
+</html>

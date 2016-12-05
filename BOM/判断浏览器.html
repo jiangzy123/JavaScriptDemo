@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+	var str=window.navigator.userAgent.toLowerCase();//获取用户浏览器识别码并转换成小写
+	if (str.indexOf('chrome')!=-1) {
+		alert('是谷歌浏览器');
+	}else if(str.indexOf('firefox')!=-1){
+		alert('是火狐浏览器');
+	}else if(str.indexOf('msie')!=-1){
+		alert('是IE8浏览器');
+	};
+</script>
+</body>
+</html>

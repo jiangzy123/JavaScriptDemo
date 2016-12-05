@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+
+</style>
+</head>
+<body>
+	电话号码:<input id="ipt" type="text" name="" value="">
+	
+	<script>
+	var h1='105.6px';
+	var x1=parseInt(h1);
+	console.log(x1);
+
+	var x3=parseFloat(h1);
+	console.log(x3);
+
+	var h2='a105.6';
+	var x2=parseInt(h2);
+	console.log(x2);//NaN
+
+	// alert(isNaN(x2));//true
+
+	var ipt=document.getElementById('ipt');
+	ipt.onchange=function (){
+		if (isNaN(ipt.value)) {
+			alert('亲，只能输入数字');
+		} else{
+			alert('恭喜，输入成功');
+		};
+	}
+
+	var n=12;
+	var str=n.toString();//返回字符串
+	console.log(typeof n);
+	console.log(typeof str);
+	</script>
+</body>
+</html>

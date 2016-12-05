@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+	<button id="btn">婷婷</button>
+	<h1 id="con"></h1>
+<script>
+	var btn=document.getElementById('btn');
+	var con=document.getElementById('con');
+	var x=0,timer1=null,timer2=null;
+	timer2=setTimeout(function (){
+		alert('123abc');
+	},4000);
+	timer1=setInterval(function (){
+		x++;
+		con.innerHTML=x;
+	},500);
+	
+	btn.onclick=function (){
+		// alert(timer1);
+		alert(timer2);
+		// clearInterval(timer1);
+		// clearTimeout(timer2);
+	}
+</script>
+</body>
+</html>

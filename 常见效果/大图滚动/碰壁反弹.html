@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#box{
+		width: 600px;
+		height: 320px;
+		border: 1px solid #000;
+		margin: 30px auto 0;
+		position: relative;
+	}
+	#con{
+		width: 60px;
+		height: 60px;
+		background: red;
+		position: absolute;
+		left: 80px;
+		top: 20px;
+	}
+</style>
+</head>
+<body>
+<div id="box">
+	<div id="con"></div>
+</div>
+<script>
+	var box=document.getElementById('box');
+	var con=document.getElementById('con');
+	var x=80,y=20;//初始位置
+	var movex=1,movey=1;//保存运动方向
+	setInterval(function (){
+		if (movex) {
+			x+=2;
+			if (x>=box.clientWidth-con.clientWidth) {
+				movex=0;
+			};
+			con.style.left=x+'px';
+		} else{
+			x-=2;
+			if (x<=0) {
+				movex=1;
+			};
+			con.style.left=x+'px';
+		};
+		if (movey) {
+			y+=2;
+			if (y>=box.clientHeight-con.clientHeight) {
+				movey=0;
+			};
+			con.style.top=y+'px';
+		} else{
+			y-=2;
+			if (y<=0) {
+				movey=1;
+			};
+			con.style.top=y+'px';
+		};
+		
+	},10);
+</script>
+</body>
+</html>
