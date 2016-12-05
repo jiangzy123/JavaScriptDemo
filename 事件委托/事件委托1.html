@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#parent{overflow: hidden;}
+	h3,span,p,em,h4,strong{
+		font-size: 30px;
+		float: left;
+		background: #ccc;
+		margin: 5px;
+	}
+</style>
+</head>
+<body>
+	<div id="parent">
+		<h3>我是h3标签</h3>
+		<span>我是span标签</span>
+		<p>我是p标签</p>
+		<em>我是em标签</em>
+		<h4>我是h4标签</h4>
+		<strong>我strong标签</strong>
+		<h3>我是h3标签</h3>
+		<span>我是span标签</span>
+		<p>我是p标签</p>
+		<em>我是em标签</em>
+		<h4>我是h4标签</h4>
+		<strong>我strong标签</strong>
+	</div>
+<script>
+	var parent=document.getElementById('parent');
+	var h3=parent.getElementsByTagName('h3')[0];
+	var tags=parent.children;
+	/*h3.onclick=function (){
+		alert('abc');
+	}*/
+	/*document.onclick=function (ev){
+		var e=ev||window.event;
+		console.log(e);
+		if (e.target.nodeName=='H3') {
+			alert('123');
+		};
+	}*/
+	/*for (var i = 0; i < tags.length; i++) {
+		tags[i].onclick=function (){
+			this.style.background='green';
+		}
+	};*/
+
+	parent.onclick=function (ev){
+		var e=ev||window.event;
+		var target=e.target||e.srcElement;//事件源
+		if (target.id!='parent') {
+			target.style.background='green';
+		};
+	}
+</script>
+</body>
+</html>

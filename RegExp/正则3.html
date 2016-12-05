@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<label for="ipt">手机号:</label>
+<input id="ipt" type="text" name="" value="">
+<br>
+移动号码
+<input type="radio" checked="checked" name="abc" value="">
+联通号码
+<input type="radio" name="abc" value="">
+<button id="btn">提交</button>
+<script>
+	var ipt=document.getElementById('ipt');
+	var btn=document.getElementById('btn');
+	var dxs=document.getElementsByName('abc');
+	var reg=new RegExp("13[4-9](\\d){8}","g");
+	// var reg=/13[4-9](\d){8}/g;
+	// var reg2=new RegExp("\\\\d+","g")
+	// var str='abc123\\dtef';
+	// alert(reg2.test(str));
+	btn.onclick=function (){
+		for (var i = 0; i < dxs.length; i++) {
+			if (dxs[i].checked) {
+				if (i==1) {
+					reg.compile("13[0-3](\\d){8}","g");
+				}else{
+					reg.compile("13[4-9](\\d){8}","g");
+				};
+			};
+		};
+		if (reg.test(ipt.value)) {
+			alert('输入正确');
+		} else{
+			alert('输入错误');
+		};
+	}
+</script>
+</body>
+</html>

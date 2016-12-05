@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	html,body{width: 100%; height: 100%;}
+	#wrap{
+		width: 100%;
+		height: 100%;
+		background: url(bg.jpg) 0 0 no-repeat;
+		background-size: 100% 100%;
+	}
+	#login{
+		font-size: 50px;
+		color: red;
+	}
+	#mask{
+		width: 100%;
+		height: 100%;
+		background: #000;
+		opacity: 0.5;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 999;
+		display: none;
+	}
+	#fm{
+		width: 400px;
+		height: 200px;
+		background: #ccc;
+		position: absolute;
+		top: 200px;
+		left: 400px;
+		z-index: 9999;
+		display: none;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<a id="login" href="javascript:;">登录</a>
+</div>
+<div id="mask"></div>
+<form id="fm" method="get" action="login2.html">
+	<label for="user">账号：</label>
+	<input id="user" type="text" name="user" value="">
+	<br>
+	<label for="pass">账号：</label>
+	<input id="pass" type="password" name="pass" value="">
+	<br>
+	<label for="auto">自动登录：</label>
+	<input id="auto" type="checkbox" name="" value="">
+	<br>
+	<input id="sub" type="submit" name="" value="登录">
+</form>
+<script type="text/javascript" src="my.js"></script>
+<script>
+	var login=document.getElementById('login');
+	var mask=document.getElementById('mask');
+	var fm=document.getElementById('fm');
+	var user=document.getElementById('user');
+	var pass=document.getElementById('pass');
+	var auto=document.getElementById('auto');
+	var sub=document.getElementById('sub');
+	login.onclick=function (){
+		mask.style.display='block';
+		fm.style.display='block';
+		var winW=document.documentElement.clientWidth;
+		var winH=document.documentElement.clientHeight;
+		var fmW=fm.offsetWidth;
+		var fmH=fm.offsetHeight;
+		fm.style.top=(winH-fmH)/2+'px';
+		fm.style.left=(winW-fmW)/2+'px';
+		if (getCookie('username')) {
+			user.value=getCookie('username');
+			pass.value=getCookie('userpass');
+			auto.checked=true;
+		};
+	}
+	sub.onclick=function (){
+		if (getCookie('time2')) {
+			setCookie('time',getCookie('time2'),30);
+		} else{
+			setCookie('time','您最近一个月第一次登录',30);
+		};
+		if (auto.checked) {
+			setCookie('username',user.value,30);
+			setCookie('userpass',pass.value,30);
+		} else{
+			rmCookie('username');
+			rmCookie('userpass');
+		};
+	}
+</script>
+</body>
+</html>

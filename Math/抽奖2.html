@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	body{
+		background: #000;
+	}
+	#list{
+		width: 840px;
+		margin: 50px auto 0;
+		overflow: hidden;
+	}
+	#list li{
+		float: left;
+		width: 120px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		font-size: 34px;
+		color: green;
+		background: #ccc;
+		margin: 10px;
+	}
+	#list .show{
+		background: blue;
+		color: red;
+	}
+</style>
+</head>
+<body>
+<ul id="list">
+	<li>尹晓丽</li>
+	<li>李志远</li>
+	<li>唐星星</li>
+
+	<li>娄术梅</li>
+	<li>王敏</li>
+	<li>王士星</li>
+
+	<li>宋超</li>
+	<li>王晓晨</li>
+	<li>张黎明</li>
+
+	<li>孟姗姗</li>
+	<li>王昭</li>
+	<li>舒正超</li>
+	
+	<li>韩帅</li>
+	<li>周学民</li>
+	<li>李杰</li>
+
+	<li>黄琳琳</li>
+	<li>李国栋</li>
+	<li>赖学文</li>
+
+	<li>张赟崇</li>
+	<li>王若谷</li>
+	<li>丁浩</li>
+
+	<li>杜恩洋</li>
+	<li>成知涛</li>
+	<li>杜晨曦</li>
+
+	<li>张建和</li>
+	<li>王凯</li>
+	<li>张磊</li>
+
+	<li>尹振杰</li>
+	<li>焦桂林</li>
+	<li>孙文涵</li>
+	
+	<li>张翰林</li>
+	<li>周健康</li>
+	<li>李永佳</li>
+
+	<li>张金民</li>
+	<li>田超</li>
+	<li>刘近明</li>
+
+	<li>王晓哲</li>
+	<li>田冲</li>
+	<li>崔保康</li>
+
+	<li>韩天良</li>
+	<li>刘建东</li>
+	<li>贾琪</li>
+</ul>
+<script>
+	var list=document.getElementById('list');
+	var lis=list.children;
+	var timer=null,timer2=null,x,time=60;
+	function run(){
+		clearInterval(timer);
+		timer=setInterval(function (){
+			time+=20;//时间递增
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].className='';//清除所有li样式
+			};
+			if (time==500) {//时间间隔到500毫秒停止
+				clearInterval(timer);
+			} else{
+				x=Math.floor(Math.random()*lis.length);//0-41
+				clearInterval(timer);//执行一次立即清除
+				run();//重新启动一个计时器
+			};
+			lis[x].className='show';//当前显示li
+		},time);
+	}
+	document.onclick=function (){
+		time=60;//重置初始时间
+		run();
+	}
+</script>
+</body>
+</html>

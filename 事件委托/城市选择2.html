@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#list{
+		width: 400px;
+		overflow: hidden;
+		padding: 10px;
+		background: #e3e3e3;
+		display: none;
+	}
+	#list li{
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		font-size: 16px;
+		float: left;
+	}
+	#list li:hover{
+		background: #ccc;
+		color: red;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<h3 id="show">北京</h3>
+	<div id="city">
+		<button id="select">选择城市</button>
+		<ul id="list">
+			<li>北京1</li>
+			<li>北京2</li>
+			<li>北京3</li>
+			<li>北京4</li>
+			<li>北京5</li>
+			<li>北京6</li>
+			<li>北京7</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	var show=document.getElementById('show');
+	var select=document.getElementById('select');
+	var list=document.getElementById('list');
+	var lis=list.children;
+	document.onclick=function (e){
+		if (e.target.id=='select') {
+			list.style.display='block';
+		};
+		if (e.target.nodeName=='LI'&&e.target.parentNode.id=='list') {
+			show.innerHTML=e.target.innerHTML;
+			list.style.display='none';
+		};
+		if (e.target.id!='select'&&e.target.id!='list') {
+			list.style.display='none';
+		};
+	}
+</script>
+</body>
+</html>

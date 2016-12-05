@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#list,#list2{overflow: hidden;}
+	#list li,#list2 li{width: 60px; height: 60px; background: #ccc; float: left; margin:10px;}
+</style>
+</head>
+<body>
+<div id="box">
+	<button id="btn">创建</button>
+	<ul id="list">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+		<li>444</li>
+	</ul>
+	<ul id="list2">
+		<li>aaa</li>
+		<li>bbb</li>
+		<li>ccc</li>
+	</ul>
+</div>
+<script>
+	var btn=document.getElementById('btn');
+	var box=document.getElementById('box');
+	var list=document.getElementById('list');
+	var lis=list.children;
+	btn.onclick=function (){
+		var oLi=document.createElement('li');
+		oLi.innerHTML='新建Li';
+		list.appendChild(oLi);
+		/*oLi.onclick=function (){
+			oLi.style.background='green';
+		}*/
+	}
+	/*for (var i = lis.length - 1; i >= 0; i--) {
+		lis[i].onclick=function (){
+			this.style.background='green';
+		}
+	};*/
+	box.onclick=function (e){
+		// if (e.target.id!='list') {
+		if (e.target.nodeName=='LI'&&e.target.parentNode.id=='list') {
+			e.target.style.background='green';
+		};
+		if (e.target.nodeName=='LI'&&e.target.parentNode.id=='list2') {
+			e.target.style.background='red';
+		};
+	}
+</script>
+</body>
+</html>

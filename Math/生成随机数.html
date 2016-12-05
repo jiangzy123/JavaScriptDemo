@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	
+</style>
+</head>
+<body>
+	<!-- 1到20随机生成10个数 不能有重复的数字-->
+	<div id="div1"></div>
+</body>
+<script>
+	var div1=document.getElementById('div1');
+	var arr=[];
+	for (var i = 0; i < 10; i++) {
+		var sjs=Math.ceil(Math.random()*19+1);//当前生成的随机数
+		var repeat=false;//标记是否有重复
+		for (var i = 0; i < arr.length; i++) {
+			if (sjs==arr[i]) {
+				repeat=true;//有重复
+				break;
+			};
+		};
+		if (repeat) {//有重复时执行
+			i--;
+		}else{//没有重复时执行
+			arr.push(sjs);
+		};
+	};
+	div1.innerHTML=arr;
+	// alert(0.000==0);//true
+</script>
+</html>

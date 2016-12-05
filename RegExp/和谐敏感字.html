@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#con{
+		font-size: 20px;
+		color: red;
+		width: 400px;
+		background: #ccc;
+		text-indent: 2em;
+	}
+</style>
+</head>
+<body>
+<textarea id="txt" cols="50" rows="10"></textarea>
+<button id="btn">发布</button>
+<div id="con"></div>
+<script>
+	var txt=document.getElementById('txt');
+	var btn=document.getElementById('btn');
+	var con=document.getElementById('con');
+	// 中国 南海 黄岩岛 美国 中国人民解放军
+	/*var reg1=/中国/g;
+	var reg2=/美国/g;
+	...*/
+	var reg=/中国政府|南海|黄岩岛|美国|中国人民解放军/g;
+
+	btn.onclick=function (){
+		var content=txt.value.replace(reg,function (x){
+			// alert(x);//每次匹配到的词
+			var a='';
+			for (var i = 0; i < x.length; i++) {
+				a+='*';
+			};
+			return a;
+		});
+		con.innerHTML=content;
+	}
+</script>
+</body>
+</html>
+<!-- 我们首先来说说南海相关的消息，根据消息了解，目前来看中国海警船在南海的黄岩岛部署有所增加，而且有消息也指出在G20峰会之后，黄岩岛将会开建。目前我们掌握到消息来看，中国政府有多艘的挖泥船已经被调回到船厂进行整修，中国人民解放军朱先生您怎么看这一连串的消息？这是否背后有意味着美国全球博弈有的新一轮的较量呢？ -->

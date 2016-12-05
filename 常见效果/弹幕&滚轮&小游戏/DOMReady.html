@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>封装DOMContentLoaded事件</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	
+</style>
+</head>
+<body>
+<img src="http://img.yule.com.cn/upload/cng/jingtian/yule0101.jpg"/>
+</body>
+<script>
+//保存domReady的事件队列
+var eventQueue = [];
+
+//判断DOM是否加载完毕
+var isReady = false;
+
+//判断DOMReady是否绑定
+var isBind = false;
+
+/*执行domReady()
+将事件处理程序压入事件队列,并绑定DOMContentLoaded
+如果DOM加载已经完成，则立即执行*/
+function domReady(fn){
+    if (isReady) {
+        fn.call(window);
+    }else{
+        eventQueue.push(fn);
+    };
+    bindReady();
+};
+
+/*domReady事件绑定
+现代浏览器通过addEvListener绑定DOMContentLoaded,包括ie9+
+ie6-8通过判断doScroll判断DOM是否加载完毕*/
+function bindReady(){
+    if (isReady) return;
+    if (isBind) return;
+    isBind = true;
+    if (window.addEventListener) {
+        document.addEventListener('DOMContentLoaded',execFn,false);
+    }else if (window.attachEvent) {
+        doScroll();
+    };
+};
+
+/*doScroll判断ie6-8的DOM是否加载完成
+doScroll判断DOM是否加载完成 bindReady() */
+function doScroll(){
+    try{
+        document.documentElement.doScroll('left');
+    }catch(error){
+        return setTimeout(doScroll,20);
+    };
+    execFn();
+};
+
+/*执行事件队列
+循环执行队列中的事件处理程序
+bindReady()*/
+function execFn(){
+    if (!isReady) {
+        isReady = true;
+        for (var i = 0; i < eventQueue.length; i++) {
+            eventQueue[i].call(window);
+        };
+        eventQueue = [];
+    };
+};
+
+//js文件1
+domReady(function(){
+    alert('DOM已加载完成');
+});
+//js文件2
+/*domReady(function(){
+    ...
+});
+*/
+//注意，如果是异步加载的js就不要绑定domReady方法，不然函数不会执行，
+//因为异步加载的js下载之前，DOMContentLoaded已经触发，addEventListener执行时已经监听不到了
+
+/*我们在写js代码的时候，一般都会添加window.onload事件，主要是为了在DOM加载完后可以使用getElementById，getElementsByTagName等方法选取DOM元素进行操作，但是window.load会等到加载完DOM、脚本、CSS等，最后加载完图片甚至是iframe中的所有资源才会触发，很多时候网页的图片较多较大，要等最后图片这个耗时大户加载完才执行js明显有些太迟了，很多时候都会影响用户体验。
+很多js框架都有个document.ready的功能，像JQuery的$(document).ready()方法，可以在DOM加载完就立即执行js代码，让图片自个慢慢加载吧。
+document.ready的核心是DOMContentLoaded事件，firefox、chrome、opera、safari、ie9+都可以使用addEventListener(‘DOMContentLoaded',fn,false)进行事件绑定，而ie6~8不支持DOMContentLoaded事件，所以要针对ie6~8做兼容性处理。
+资料上说ie6~8可以使用document.onreadystatechange事件监听document.readyState状态是否等于complete来判断DOM是否加载完毕，如果页面中嵌有iframe的话，ie6~8的document.readyState会等到iframe中的所有资源加载完才会变成complete，此时iframe变成了耗时大户。但是经过测试，即使页面中没有iframe，当readyState等于complete时，实际触发的是onload事件而不是DOMContentLoaded事件，对这点表示惊奇。
+还好ie有个特有的doScroll方法，当页面DOM未加载完成时，调用doScroll方法时，就会报错，反过来，只要一直间隔调用doScroll直到不报错，那就表示页面DOM加载完毕了，不管图片和iframe中的内容是否加载完毕，此法都有效。
+如果有多个js文件绑定了document.ready事件，为了防止浏览器重复绑定，同时有序执行，可以引入一个事件队列机制来解决。*/
+</script>
+</html>

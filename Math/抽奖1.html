@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	body{
+		background: #000;
+		font-weight: bold;
+	}
+	#tit{
+		height: 200px;
+		line-height: 200px;
+		font-size: 100px;
+		color: green;
+		text-align: center;
+	}
+	#btn{
+		cursor: pointer;
+	}
+#con{
+	font-size: 120px;
+	height: 200px;
+	line-height: 200px;
+	color: red;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<p id="tit"><span id="btn">Start</span></p>
+	<div id="con">抽奖即将开始</div>
+<script>
+	var btn=document.getElementById('btn');
+	var con=document.getElementById('con');
+	var flag=1,timer=null,sjs;
+	var arr=[
+		"舒正超",
+		"王士星",
+		"王敏",
+		"娄术梅",
+		"唐星星",
+		"李志远",
+		"尹晓丽",
+		"赖学文",
+		"王昭",
+		"孟姗姗",
+		"张黎明",
+		"王晓晨",
+		"宋超",
+		"杜晨曦",
+		"李国栋",
+		"黄琳琳",
+		"李杰",
+		"周学民",
+		"韩帅",
+		"孙文涵",
+		"成知涛",
+		"杜恩洋",
+		"丁浩",
+		"王若谷",
+		"张赟崇",
+		"刘近明",
+		"焦桂林",
+		"尹振杰",
+		"张磊",
+		"王凯",
+		"张建和",
+		"贾琪",
+		"田超",
+		"张金民",
+		"李永佳",
+		"周健康",
+		"张翰林",
+		"刘建东",
+		"韩天良",
+		"崔保康",
+		"田冲",
+		"王晓哲"
+	];
+	function random(){
+		timer=setInterval(function (){
+			sjs=Math.floor(Math.random()*arr.length);//0-41
+			con.innerHTML=arr[sjs];
+		},20);
+	}
+	btn.onclick=function (){
+		if (flag) {
+			btn.innerHTML='Stop';
+			random();
+			flag=0;
+		} else{
+			btn.innerHTML='Start';
+			clearInterval(timer);
+			flag=1;
+		};
+	}
+	document.onkeyup=function (ev){
+		var e=ev||window.event;
+		// alert(e.keyCode);//32空格键
+		if (e.keyCode==32) {
+			if (flag) {
+				btn.innerHTML='Stop';
+				random();
+				flag=0;
+			} else{
+				btn.innerHTML='Start';
+				clearInterval(timer);
+				flag=1;
+			};
+		};
+	}
+
+	// 20-100随机数
+	var sjs2=Math.floor(Math.random()*81+20);
+</script>
+</body>
+</html>

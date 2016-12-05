@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>现在时间</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	div{font-size: 50px; color: red;}
+</style>
+</head>
+<body>
+	<div>当前时间：<span id="time"></span></div>
+</body>
+<script>
+	setInterval(function (){
+		var date=new Date();
+		var now='';
+		var hs=date.getHours();
+		var ms=date.getMinutes();
+		var ss=date.getSeconds();
+		if (hs<10) {
+			hs='0'+date.getHours();
+		} else{
+			hs=date.getHours();
+		};
+		if (ms<10) {
+			ms='0'+date.getMinutes();
+		} else{
+			ms=date.getMinutes();
+		};
+		if (ss<10) {
+			ss='0'+date.getSeconds();
+		} else{
+			ss=date.getSeconds();
+		};
+		now=date.getFullYear()+'年';
+		now=now+(date.getMonth()+1)+'月';
+		now=now+date.getDate()+'日';
+		now=now+hs+'时';
+		now=now+ms+'分';
+		now=now+ss+'秒';
+		now=now+date.getMilliseconds()+'毫秒';
+		document.getElementById('time').innerHTML=now;
+	},1);
+</script>
+<!-- 1秒：1000
+	 1分：1000*60
+	 1时：1000*60*60
+	 1天：1000*60*60*24 -->
+</html>

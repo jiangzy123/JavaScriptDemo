@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+</head>
+<body>
+	<script>
+		//IE9以上支持谷歌火狐的event事件对象的写法，IE8以下不支持
+		// document.onclick=function (ee){
+		// 	var e=ee;
+		// 	console.log(e);
+		// }
+		//火狐不支持这种event事件的写法，谷歌IE支持
+		// document.onclick=function (){
+		// 	var e=event;
+		// 	console.log(e.clientX);
+		// }
+		//为了兼容各个浏览器，应这样写
+		// document.onclick=function (ev){
+		// 	var eve=window.event||ev;
+		// 	console.log(eve.clientY);
+		// 	console.log(eve.preventDefault);
+		// }
+		// document.oncontextmenu=function (ev){
+		// 	var ev=window.event||ev;
+		// 	//w3c阻止默认事件
+		// 	// ev.preventDefault();
+		// 	//IE阻止默认事件
+		// 	// ev.returnValue=false;
+		// 	if (ev.preventDefault) {
+		// 		ev.preventDefault();
+		// 	}else{
+		// 		ev.returnValue=false;
+		// 	};
+		// }
+		document.onkeydown=function (ev){
+			var e=window.event||ev;
+			console.log(e.keyCode);
+		}
+	</script>
+</body>
+</html>

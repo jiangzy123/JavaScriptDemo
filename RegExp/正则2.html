@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+	<input id="ipt" type="text" name="" value="">
+	<button id="btn">验证</button>
+
+<script>
+	var ipt=document.getElementById('ipt');
+	var btn=document.getElementById('btn');
+	var reg1=/[0-9]{11,12}$/g;
+	var reg2=/\s{1,}/g;
+	var reg3=/\bhello\b/g;
+	btn.onclick=function (){
+		/*if (reg1.test(ipt.value)) {
+			alert('输入正确');
+		} else{
+			alert('输入有误');
+		};*/
+		/*if (reg2.test(ipt.value)) {
+			alert('不能含有空格');
+		} else{
+			alert('输入正确');
+		};*/
+		reg3.lastIndex=0;
+		if (reg3.test(ipt.value)) {
+			alert('有单词边界');
+		} else{
+			alert('没有单词边界');
+		};
+	}
+</script>
+</body>
+</html>

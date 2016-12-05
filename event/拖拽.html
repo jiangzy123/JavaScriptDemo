@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+#con{
+width: 500px;
+height: 500px;
+margin: 100px auto 0;
+border:1px solid red;
+position:relative;
+}
+#go{
+width:30px;
+height: 30px;
+background-color: blue;
+position: absolute;
+left:20px;
+top:20px;
+cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+	<div id="con">
+		<div id="go"></div>
+	</div>
+	<script>
+		var go = document.getElementById('go');
+		var con = document.getElementById('con');
+		var flag = false;
+		var x=20,y=20;
+		go.onmousedown = function(ee){
+			var e  = ee||window.event;
+			var tempx = e.clientX - go.offsetLeft;
+			var tempy = e.clientY - go.offsetTop;
+//			console.log(tempx+"==="+tempy)
+			document.onmouseover = function(e){
+				var e2 = e||window.event;
+				var x = e2.clientX-tempx;
+				var y = e2.clientY-tempy;
+				console.log(x+'======'+y)
+				go.style.left=x+'px';
+				go.style.top=y+'px';
+			}
+		}
+		document.onmouseup=function(){
+			document.onmouseover=null;
+		}
+		
+	</script>
+</body>
+</html>

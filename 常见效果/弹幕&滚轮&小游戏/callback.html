@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+	function a(callback){
+		alert('111');
+		callback();
+	}
+	function b(){
+		alert('222');
+	}
+	function c(){
+		alert('333');
+	}
+	a(c);
+</script>
+</body>
+</html>

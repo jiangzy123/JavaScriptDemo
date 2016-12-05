@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+	<h1 id="con"></h1>
+<script>
+	var con=document.getElementById('con');
+	var x1=18.0001;
+	var x2=18.9999;
+	// con.innerHTML=Math.PI;//3.1416926...
+	// con.innerHTML=Math.ceil(x1);//19
+	// con.innerHTML=Math.ceil(x2);//19
+
+	// con.innerHTML=Math.floor(x1);//18
+	// con.innerHTML=Math.floor(x2);//18
+	// con.innerHTML=parseInt(x1);//18
+	// con.innerHTML=parseInt(x2);//18
+
+	// con.innerHTML=Math.round(x1);//18
+	// con.innerHTML=Math.round(x2);//19
+
+	// con.innerHTML=Math.min(12,8,54,105,27,3,71);//3
+	// con.innerHTML=Math.max(12,8,54,105,27,3,71);//105
+
+	var timer=setInterval(function (){
+		var abc=Math.random();
+		if (abc==0||abc==1) {
+			clearInterval(timer);
+			alert('警告');
+		};
+		con.innerHTML=abc;
+	},10);
+
+	/*if (0.000000==0) {
+		alert('hjjkb');
+	};*/
+</script>
+</body>
+</html>

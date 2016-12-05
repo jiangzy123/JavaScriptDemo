@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	div{font-size: 50px; width: 100px; height: 100px; line-height: 100px; text-align: center;}
+	#box1{background: green; position: absolute; cursor: move;}
+	#box2{background: red; position: absolute; left: 400px; top: 200px;}
+</style>
+</head>
+<body>
+	<div id="box1">1</div>
+	<div id="box2">2</div>
+</body>
+<script>
+	var box1=document.getElementById('box1');
+	var box2=document.getElementById('box2');
+	box1.onmousedown=function (ev){
+		ev.preventDefault();
+		var d_bkx=ev.clientX-box1.offsetLeft;
+		var d_bky=ev.clientY-box1.offsetTop;
+		document.onmousemove=function (ev){
+			ev.preventDefault();
+			var top=ev.clientY-d_bky;
+			var left=ev.clientX-d_bkx;
+			box1.style.top=top+'px';
+			box1.style.left=left+'px';
+
+			//获取box1各个方向的距离
+			var l1=box1.offsetLeft;
+			var r1=box1.offsetLeft+box1.offsetWidth;
+			var t1=box1.offsetTop;
+			var b1=box1.offsetTop+box1.offsetHeight;
+			//获取box2各个方向的距离
+			var l2=box2.offsetLeft;
+			var r2=box2.offsetLeft+box2.offsetWidth;
+			var t2=box2.offsetTop;
+			var b2=box2.offsetTop+box2.offsetHeight;
+			if (l1>r2||r1<l2||b1<t2||t1>b2) {
+				box2.style.background='red';
+			} else{
+				box2.style.background='yellow';
+			};
+
+		}
+		document.onmouseup=function (){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		}
+	}
+</script>
+</html>
