@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	.wrap{
+		width: 6.4rem;
+		height: 10.08rem;
+		background: url(images/bg6.jpg) 0 0 no-repeat;
+		margin: 0 auto;
+		background-size: 100% 100%;
+	}
+	.wrap h1{
+		font-size: 0.32rem;
+		text-align: center;
+		line-height: 0.8rem;
+	}
+	.wrap .head{
+		width: 6.4rem;
+		height: 2.71rem;
+	}
+	.wrap .box{
+		overflow: hidden;
+	}
+	.wrap .con{
+		width: 2.2rem;
+		height: 1.5rem;
+		margin-left:0.66rem;
+		float: left;
+	}
+	.wrap p{
+		font-size: 0.24rem;
+		margin-top: 0.2rem;
+		padding: 0 0.6rem;
+		line-height: 160%;
+	}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<img class="head" src="images/bg7.jpg" alt="">
+	<h1>移动适配测试标题</h1>
+	<div class="box">
+	<img class="con" src="images/1.jpg" alt="">
+	<img class="con" src="images/2.jpg" alt="">
+	</div>
+	<p>测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容</p>
+</div>
+
+<script>
+function resetFont(){
+	var HTML=document.getElementsByTagName('html')[0];
+	var deviceWidth=document.documentElement.clientWidth;//获取设备宽度
+	var scale=deviceWidth/640;//640是psd设计图宽度
+	HTML.style.fontSize=100*scale+'px';
+}
+resetFont();
+window.onresize=function (){
+	resetFont();
+}
+</script>
+</body>
+</html>

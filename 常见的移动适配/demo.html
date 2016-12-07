@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	img{
+		width: 100%;
+		display: block;
+	}
+</style>
+</head>
+<body>
+<div id="page1">
+	<img src="images/bg1.jpg" alt="">
+</div>
+<div id="page2" style="display:none;">
+	<img src="images/bg2.jpg" alt="">
+</div>
+<div id="page3" style="display:none;">
+	<img src="images/bg3.jpg" alt="">
+</div>
+<div id="page4" style="display:none;">
+	<img src="images/bg4.jpg" alt="">
+</div>
+<div id="page5" style="display:none;">
+	<img src="images/bg5.jpg" alt="">
+</div>
+
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<script>
+	var startY=0,endY=0,n=1,flag=false;
+	document.addEventListener('touchstart',function (e){
+		startY=e.targetTouches[0].pageY;
+	},false);
+	document.addEventListener('touchmove',function (e){
+		e.preventDefault();//阻止窗口滚动条滚动
+		endY=e.targetTouches[0].pageY;
+		if (startY-endY>100||startY-endY<-100) {
+			flag=true;
+		};
+	},false);
+	document.addEventListener('touchend',function (e){
+		if (flag) {
+			if (startY-endY>100) {//上滑动
+				flag=false;
+				if (n>=5) {
+					n=5;
+					return;
+				};
+				switch(n){
+					case 1:
+							$('#page1').slideUp(300).next().show();
+							break;
+					case 2:
+							$('#page2').slideUp(300).next().show();
+							break;
+					case 3:
+							$('#page3').slideUp(300).next().show();
+							break;
+					case 4:
+							$('#page4').slideUp(300).next().show();
+							break;
+					case 5:
+							$('#page5').slideUp(300).next().show();
+							break;
+				}
+				n++;
+			};
+			if (startY-endY<-100) {//下滑动
+				flag=false;
+				if (n<=1) {
+					n=1;
+					return;
+				};
+				switch(n){
+					case 5:
+							$('#page4').slideDown(300,function (){
+								$('#page5').hide();
+							});
+							break;
+					case 4:
+							$('#page3').slideDown(300,function (){
+								$('#page4').hide();
+							});
+							break;
+					case 3:
+							$('#page2').slideDown(300,function (){
+								$('#page3').hide();
+							});
+							break;
+					case 2:
+							$('#page1').slideDown(300,function (){
+								$('#page2').hide();
+							});
+							break;
+				}
+				n--;
+			};
+		} else{
+			return;
+		};
+	},false);
+</script>
+</body>
+</html>
