@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	div{width:500px;height:300px;border:1px solid #000;}
+	p{width:300px;height:150px;border:1px solid red;}
+	a{}
+</style>
+</head>
+<body>
+	<div>
+		<p>
+		</p>
+	</div>
+	<script>
+		var div=document.getElementsByTagName('div')[0];
+		var p=document.getElementsByTagName('p')[0];
+		// div.onclick=function (){
+		// 	alert("我是div标签");
+		// }
+		// p.onclick=function (){
+		// 	alert("我是p标签");
+		// }
+		
+		
+		// div.addEventListener('click',fn1,false);
+		// p.addEventListener('click',function fn2(){
+		// 	alert("我是p标签");
+		// },true);
+		
+		// function fn1(){
+		// 	alert("我是div标签");
+		// }
+		//移除事件函数要是单封装的函数，这样才是移除的同一个执行函数，如移除div这种方式，而移除p点击事件的方式就不可以
+		// p.removeEventListener('click',function fn2(){
+		// 	alert("我是p标签");
+		// },true);
+		// div.removeEventListener('click',fn1,false);
+
+		// function fn3(){
+		// 	alert("我是div标签");
+		// }
+		// function fn4(){
+		// 	alert('我是p标签');
+		// }
+		// div.attachEvent('onclick',fn3);
+		// p.attachEvent('onclick',fn4);
+		// p.detachEvent('onclick',fn4);
+
+		function fn5(obj,type,boolean,fn){
+			if (obj.addEventListener) {
+				obj.addEventListener(type,fn,boolean);
+			}else{
+				obj.attachEvent('on'+type,fn)
+			};
+		}
+		function fn6(){
+			alert("我是div");
+		}
+		fn5(div,'click',false,fn6);
+		fn5(p,'click',false,fn6);
+	</script>
+</body>
+</html>

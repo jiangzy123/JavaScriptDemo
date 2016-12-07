@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	ul{width: 300px;height:300px;background:red;}
+	li{width:150px;height:150px;background:blue;}
+	p{width:100px;height:100px;background:green;}
+</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<p></p>
+		</li>
+	</ul>
+	<script>
+		var ul=document.getElementsByTagName('ul')[0];
+		var li=document.getElementsByTagName('li')[0];
+		var p=document.getElementsByTagName('p')[0];
+		ul.onclick=function (){
+			alert('我是ul');
+		}
+		li.onclick=function (ev){
+			alert("我是li");
+			var e=window.event||ev;
+			// e.stopPropagation();
+			if (e.stopPropagation) {
+				//阻止事件传播（w3c）
+				e.stopPropagation();
+			}else{
+				//阻止事件传播（IE）
+				e.cancelBubble=true;
+			};
+			// e.cancelBubble=true;
+		}
+		p.onclick=function (){
+			alert("我是p");
+		}
+	</script>
+</body>
+</html>

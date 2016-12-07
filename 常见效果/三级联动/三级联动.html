@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>三级联动</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+.cityList{
+	width: 780px;
+	margin:50px auto 0;
+}
+select{
+	width: 160px;
+	font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div class="cityList">
+	<label for="sheng">省份：</label>
+	<select id="sheng">
+		<option value="-1">请选择</option>
+	</select>&nbsp;&nbsp;&nbsp;
+	<label for="shi">城市：</label>
+	<select id="shi">
+		<option value="-1">请选择</option>
+	</select>&nbsp;&nbsp;&nbsp;
+	<label for="qu">区/县：</label>
+	<select id="qu">
+		<option value="-1">请选择</option>
+	</select>
+</div>
+<script type="text/javascript" src="citylist.js"></script>
+<script>
+var sheng=document.getElementById('sheng');
+var shi=document.getElementById('shi');
+var qu=document.getElementById('qu');
+// console.log(json.citylist[0].p);//北京  获取示例
+// console.log(json.citylist[0].c[0].n)//东城区  获取示例
+// console.log(json.citylist.length);//35  获取示例
+var opt1='<option value="-1">请选择</option>';
+for (var i = 0; i <json.citylist.length; i++) {//省份初始值
+	opt1=opt1+'<option value="'+i+'">'+json.citylist[i].p+'</option>';
+	sheng.innerHTML=opt1;
+}
+sheng.onchange=function (){//选择省份后
+	var opt2='<option value="-1">请选择</option>';//初始值
+	if(sheng.value==-1){
+		shi.innerHTML=opt2;
+		qu.innerHTML=opt2;
+	}else{
+		if (json.citylist[sheng.value].c[0].a) {//是省份执行这
+			for (var i = 0; i <json.citylist[sheng.value].c.length; i++) {
+				opt2=opt2+'<option value="'+i+'">'+json.citylist[sheng.value].c[i].n+'</option>';
+				shi.innerHTML=opt2;
+			}
+		} else{//是直辖市执行这
+			opt2=opt2+'<option value="0">'+json.citylist[sheng.value].p+'</option>';
+			shi.innerHTML=opt2;
+		};
+	}
+}
+shi.onchange=function (){//选择城市后
+	var opt3='<option value="-1">请选择</option>';//初始值
+	if(shi.value==-1){
+		qu.innerHTML=opt3;
+	}else{
+		if (json.citylist[sheng.value].c[0].a) {//是省份执行这
+			for (var i = 0; i <json.citylist[sheng.value].c[shi.value].a.length; i++) {
+				opt3=opt3+'<option value="'+i+'">'+json.citylist[sheng.value].c[shi.value].a[i].s+'</option>';
+				qu.innerHTML=opt3;
+			}
+		} else{//是直辖市执行这
+			for (var i = 0; i <json.citylist[sheng.value].c.length; i++) {
+				opt3=opt3+'<option value="'+i+'">'+json.citylist[sheng.value].c[i].n+'</option>';
+				qu.innerHTML=opt3;
+			}
+		};
+	}
+}
+</script>
+</body>
+</html>
