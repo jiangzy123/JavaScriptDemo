@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+*{margin: 0;padding:0;}
+body{
+	position: relative;
+	background-color: #000;
+	overflow: hidden;
+}
+#main{
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.createDiv{
+	font-size: 30px;
+	height: 50px;
+	font-family: "微软雅黑";
+	background-color: #FFF;
+	opacity: 0.6;
+	position: absolute;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<div id="main"></div>
+	<script>
+	var oMain = document.getElementById("main");
+	var W = document.documentElement.clientWidth;
+	var H = document.documentElement.clientHeight;
+	oMain.style.width = W + "px";
+	oMain.style.height = H + "px";
+	function Add(){
+		var oDiv = document.createElement("div");
+		oDiv.innerHTML = "弹幕测试数据"+Math.round(Math.random()*300);
+		oDiv.style.color = "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+		// oDiv.setAttribute("class","createDiv");
+		oDiv.className='createDiv';
+		oDiv.style.left = W + "px";
+		// oDiv.style.top = Math.round(Math.random()*300) + "px";
+		oDiv.style.top = Math.floor(Math.random()*7)*50 + "px";
+		oMain.appendChild(oDiv);
+		Move(oDiv);
+	}
+	function Move(ele) {
+		var time = setInterval(function(){
+			var L = ele.offsetLeft;
+			var elew=ele.clientWidth;
+			L--;
+			if(L<=-elew){
+				oMain.removeChild(ele);
+				clearInterval(time);
+			}
+			ele.style.left = L + "px";
+		},2)
+	}
+	/*var time2=setInterval(function(){
+		Add();
+	},1000);*/
+
+	function isMinStatus() {//判断浏览器是否最小化
+		var isMin = false; 
+		if (window.outerWidth != undefined) { 
+			isMin = window.outerWidth <= 160 && window.outerHeight <= 27; 
+		}else { 
+			isMin = window.screenTop < -30000 && window.screenLeft < -30000; 
+		} 
+		return isMin;
+	}
+	var time2=setInterval(function(){
+		if (isMinStatus()!=true) {
+			Add();
+		};
+	},1000);
+
+	</script>
+</body>
+</html>

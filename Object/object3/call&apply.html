@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+	
+</body>
+<script>
+// JS给所有函数都定义了
+// Call(obj1,x,y,v)与apply(obj1,[x,y,v])两个方法，二者的作用完全一样，只是接受参数的方式不太一样。第一个参数都是需要调用的函数对象，第二个参数，call传的值可以是任意的，而apply传的值必须为数组
+// JavaScript中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。
+// 可以看出call和apply是为了动态改变this而出现的，当一个object没有某个方法，但是其他的有，我们可以借助call或apply用其它对象的方法来操作。
+
+
+// 语法: fun1.call(fun2, arg1, arg2);
+      // fun1.apply(fun2, [arg1, arg2]);
+// 例如：
+function add(a, b) { return a + b; }
+function sub(a, b) { return a - b; }
+// apply用法
+// var a1 = sub.apply(add, [4, 2]);
+// var a2= add.apply(sub, [4, 2]);
+// call用法
+// var a1 = sub.call(add, 4, 2);
+// var a2= add.call(sub, 4, 2);
+// 输出：a1=2  a2=6
+
+// JS模仿继承
+function fun1() {
+    this.a = 123;
+    this.add = function () { alert(this.a) }
+}
+
+function fun2() {
+    this.a = 456;
+}
+var f1=new fun1()
+var f2=new fun2()
+f1.add();//123
+var a = f1.add.call(f2);  // a输出的是456
+// 这里就是把f1的方法拿给f2来用，f2便可以使用f1中所有的方法，这不正是高级语言中继承的概念喽。当然根据综上可扩展出多继承，使用多个call便可以实现多继承
+/*function fun1() {
+    this.add = function () { return this.a }
+}
+function fun2() {
+    this.sub = function () { return this.a-this.b }
+}
+function fun3() {
+    this.a = 10;
+    this.b = 2;
+    fun1.call(this);
+    fun2.call(this);
+}
+var f3 = new fun3();
+alert(f3.add());
+alert(f3.sub());//如此，想要继承谁就可以继承谁*/
+</script>
+</html>

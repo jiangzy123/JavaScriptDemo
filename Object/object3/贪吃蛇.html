@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>  
+*{ margin:0; padding:0;}
+html,body{ width:100%; height:100%;}
+#snakeHead{ height:30px; width:30px; background:green; position:absolute;}
+#snakeBody div { height:30px; width:30px; background:#ccc; position:absolute;}
+#food div{ height:30px; width:30px; background:#F90; position:absolute;} 
+</style>
+<script>
+
+function Snake(){
+	
+	this.snakeHead=document.getElementById("snakeHead");//蛇头
+	this.snakeBody=document.getElementById("snakeBody");//蛇的身体
+	this.aBodyChild=[];
+	this.food=document.getElementById("food");//食物
+	
+	this.right=true; //向右移动,初始right为true
+	this.left=false; //向左移动
+	this.bottom=false; //向下移动
+	this.top=false; //向上移动
+	
+	this.speed=30;//控制每次移动的距离,为了以后扩展
+	
+	window.timer=null;//因为定时器必须为全局，又不能加在对象上，所以加到了window
+	
+	this.remove=true;//控制是否删除旧的位置
+	
+	this.aBodyMove=true;//控制是否移动
+	
+	var _this=this;
+	
+	this.positions=[];//存储元素位置
+	var ind=1;
+	
+	this.fnSave();//先保存一次，那么在只有蛇头的时候就保存了两步的位置
+	
+	window.timer=setInterval(function (){
+		
+		if (_this.right){
+			_this.rightMove();//执行向右移动的方法
+			}
+			
+		if (_this.left){
+			_this.leftMove();//左
+			}
+			
+		if (_this.top){
+			_this.topMove();//上
+			}
+			
+		if (_this.bottom){
+			_this.bottomMove();//下
+			}
+		
+		
+		
+		//保存位置方法
+		_this.fnSave();
+		
+		//删除旧的位置方法
+		if (ind){
+			ind=0;
+			}
+		else{
+			if (_this.remove){
+				_this.fnRemove();
+				}
+			else{
+				_this.remove=true;
+				}
+			}
+		
+		document.title=_this.positions[0].l+","+_this.positions[1].l+","+_this.positions[0].t+","+_this.positions[1].t;
+		
+		//碰撞方法
+		_this.fnHit();
+		
+		//身体部分移动方法
+		if (_this.aBodyChild!=[]&&_this.aBodyMove==true){
+			_this.fnBodyMove();
+			}
+		else{
+			_this.aBodyMove=true;
+			}
+			
+		
+		//跟身体进行判断
+		_this.fnBodyHit();
+		
+		//游戏结束检测方法
+		_this.gameOver();
+		},300);
+		
+	document.onkeydown=function (ev){
+		
+		var oEvent=ev||event;
+		_this.fnDown(oEvent);
+		}
+	this.fnFode();
+	}
+//跟身体部分进行判断方法
+Snake.prototype.fnBodyHit=function (){
+	
+	for (var i=0; i<this.aBodyChild.length; i++){
+		
+		if (this.snakeHead.offsetLeft==this.aBodyChild[i].offsetLeft&&this.snakeHead.offsetTop==this.aBodyChild[i].offsetTop){
+			
+			alert('吃到了自己的身体，game over!');
+			clearInterval(timer);
+			}
+		}
+	}
+	
+//身体部分移动方法
+Snake.prototype.fnBodyMove=function (){
+	
+	for (var i=0; i<this.aBodyChild.length; i++){
+		
+		this.aBodyChild[i].style.left=this.positions[this.aBodyChild.length-i].l+"px";
+		this.aBodyChild[i].style.top=this.positions[this.aBodyChild.length-i].t+"px";
+		}
+	}
+		
+//碰撞方法
+Snake.prototype.fnHit=function (){//碰撞方法
+	
+	var l1=this.snakeHead.offsetLeft;
+	var r1=this.snakeHead.offsetLeft+this.snakeHead.offsetWidth;
+	var t1=this.snakeHead.offsetTop;
+	var b1=this.snakeHead.offsetTop+this.snakeHead.offsetHeight;
+	
+	var l2=this.oDiv.offsetLeft;
+	var r2=this.oDiv.offsetLeft+this.oDiv.offsetWidth;
+	var t2=this.oDiv.offsetTop;
+	var b2=this.oDiv.offsetTop+this.oDiv.offsetHeight;
+	
+	if (r1<l2 || l1>r2 || b1<t2 || t1>b2){
+		//没碰上
+		this.oDiv.style.background="#F90";
+		}
+	else{
+		//this.oDiv.style.background="red";
+		this.fnCreate();
+		//this.fnBodyMove();
+		this.food.removeChild(this.oDiv);
+		this.fnFode();
+		
+		this.remove=false;
+		}
+	}
+
+//创建body下的子节点
+Snake.prototype.fnCreate=function (){
+	
+	this.oBodyChild=document.createElement("div");
+	
+	if (this.positions.length==2){
+		this.oBodyChild.style.left=this.positions[0].l+"px";
+		this.oBodyChild.style.top=this.positions[0].t+"px";
+		}
+	else{
+		this.oBodyChild.style.left=this.positions[this.positions.length-2].l+"px";
+		this.oBodyChild.style.top=this.positions[this.positions.length-2].t+"px";
+		}
+	
+	
+	
+	this.aBodyChild.push(this.oBodyChild);
+	
+	
+	this.snakeBody.appendChild(this.oBodyChild);
+//	alert(this.oBodyChild.style.left+","+this.oBodyChild.style.top);
+	this.aBodyMove=false;
+	}
+
+Snake.prototype.fnSave=function (){
+	//alert(this.snakeHead.offsetLeft+","+this.snakeHead.offsetTop);
+	this.positions.push({l:this.snakeHead.offsetLeft,t:this.snakeHead.offsetTop});
+	}
+	
+Snake.prototype.fnRemove=function (){
+	
+	this.positions.shift();
+	}
+	
+Snake.prototype.fnFode=function (){
+	
+	var borderWidth=document.documentElement.offsetWidth-this.speed;//因为食物可能会超出边界，所以减去食物本身的宽高
+	var borderHeight=document.documentElement.offsetHeight-this.speed;
+	
+	//获取随机的位置
+	var randomLeft=parseInt(Math.random()*borderWidth);
+	var randomTop=parseInt(Math.random()*borderHeight);
+	
+	this.oDiv=document.createElement("div");//因为要做碰撞检测，所以把创建的这个div作为对象的一个属性
+	
+	this.oDiv.style.left=randomLeft+"px";
+	this.oDiv.style.top=randomTop+"px";
+	
+	this.food.appendChild(this.oDiv);//插到food这个div里，方便以后做多个食物时候查找
+	
+	}	
+	
+Snake.prototype.fnDown=function (oEvent){
+	
+	switch (oEvent.keyCode){
+		
+		case 37://<-左键
+			if (this.right){
+				return false;
+				}
+			this.right=false; //向右移动,初始right为true
+			this.left=true; //向左移动
+			this.bottom=false; //向下移动
+			this.top=false; //向上移
+			break;
+		case 38://上键
+			if(this.bottom){
+				return false;
+				}
+				
+			this.right=false; //向右移动,初始right为true
+			this.left=false; //向左移动
+			this.bottom=false; //向下移动
+			this.top=true; //向上移
+			break;
+		case 39://右键
+			if(this.left){
+				return false;
+				}
+				
+			this.right=true; //向右移动,初始right为true
+			this.left=false; //向左移动
+			this.bottom=false; //向下移动
+			this.top=false; //向上移
+			break;
+		case 40://下键
+			if(this.top){
+				return false;
+				}
+				
+			this.right=false; //向右移动,初始right为true
+			this.left=false; //向左移动
+			this.bottom=true; //向下移动
+			this.top=false; //向上移
+			break;
+		}
+	}
+
+Snake.prototype.gameOver=function (){
+	
+	var borderWidth=document.documentElement.offsetWidth-this.speed;
+	var borderHeight=document.documentElement.offsetHeight-this.speed;
+	
+	if (this.snakeHead.offsetLeft<0){
+		alert('game over!');
+		clearInterval(timer);
+		}
+	if (this.snakeHead.offsetLeft>borderWidth){
+		alert('game over!');
+		clearInterval(timer);
+		}
+	if (this.snakeHead.offsetTop<0){
+		alert('game over!');
+		clearInterval(timer);
+		}
+	if (this.snakeHead.offsetTop>borderHeight){
+		alert('game over!');
+		clearInterval(timer);
+		}
+	}
+	
+Snake.prototype.rightMove=function (){//向右移动的方法
+
+	this.snakeHead.style.left=this.snakeHead.offsetLeft+this.speed+"px";//left为当前的left值加移动量
+	
+	}
+Snake.prototype.leftMove=function (){//向左移动的方法
+
+	this.snakeHead.style.left=this.snakeHead.offsetLeft-this.speed+"px";//left为当前的left值减移动量
+	
+	}
+
+Snake.prototype.topMove=function (){//向上移动的方法
+
+	this.snakeHead.style.top=this.snakeHead.offsetTop-this.speed+"px";//top-speed
+	
+	}
+Snake.prototype.bottomMove=function (){//向下移动的方法
+
+	this.snakeHead.style.top=this.snakeHead.offsetTop+this.speed+"px";//top+speed
+	
+	}
+
+window.onload=function (){
+	
+	new Snake();
+	}
+
+</script>
+</head>
+
+<body>
+<div id="snakeHead"></div><!--贪吃蛇的头部-->
+<div id="snakeBody"></div><!--贪吃蛇的身体-->
+<div id="food"></div><!--贪吃蛇食物-->
+</body>
+</html>

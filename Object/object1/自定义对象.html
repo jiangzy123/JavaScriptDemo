@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<div id="box">123456</div>
+<script>
+var box=document.getElementById('box');
+// console.log(box.__proto__);
+
+
+	var obj1={};
+	var obj2=new Object();
+
+	var arr1=[];
+	var arr2=new Array();
+
+	var num1=123;
+	var num2=new Number('123');
+
+	var str1='abc';
+	var str2=new String('abc');
+
+	var fun1=function (){alert('abc123')};
+	var fun2=new Function("alert('abc123')");
+
+	// 1.直接给对象扩充属性和方法
+	var cat1={};
+	cat1.name='小白';
+	cat1.color='white';
+	cat1.food='fish';
+	cat1.skill=function (){
+		alert('卖萌~喵喵喵~~~');
+	}
+	// alert(cat1.name);
+	// alert(cat1.color);
+	// cat1.skill();
+
+	// 2.对象字面量
+	var cat2={
+		name:'小黑',
+		color:'black',
+		food:'fish',
+		skill:function (){
+			alert('卖萌~喵喵喵~~~');
+		}
+	}
+	// alert(cat2.name);
+	// alert(cat2.color);
+	// cat2.skill();
+
+	var cat3={
+		name:'小花',
+		color:'green',
+		food:'fish',
+		skill:function (){
+			alert('卖萌~喵喵喵~~~');
+		}
+	}
+
+	// 3.工厂方式
+	function cat4(n,c){//来料
+		var cat={};//加工
+		cat.name=n;//加工
+		cat.color=c;//加工
+		cat.food='fish';//加工
+		cat.skill=function (){//加工   对象方法
+			alert('卖萌~喵喵喵~~~');
+		}
+		return cat;//出厂
+	}
+	var cat5=cat4('小红','red');
+	var cat6=cat4('小蓝','blue');
+	// alert(cat5.color);
+	// alert(cat6.color);
+	// cat5.skill();
+	// cat6.skill();
+	// alert(cat5.skill==cat6.skill);//false
+
+	// 4.构造函数方式
+	function Cat7(n,c){//类 
+		this.name=n;
+		this.color=c;
+		this.food='fish';
+		this.skill=function (){
+			alert('卖萌~喵喵喵~~~');
+		}
+	}
+
+	/*Cat7.abc=function (){ // 类的方法
+		alert('执行类的方法');
+	}
+	Cat7.abc();*/
+
+	var cat8=new Cat7('aaa','111');//实例化
+	var cat9=new Cat7('bbb','222');//实例化
+	// alert(cat8.color);
+	// alert(cat9.color);
+	// cat8.skill();
+	// cat9.skill();
+	// alert(cat8.skill==cat9.skill);//false
+
+	// 5.原型方式
+	function Cat10(){};
+	// alert(typeof cat10);//function
+	Cat10.prototype.name='小白';
+	Cat10.prototype.color='white';
+	Cat10.prototype.food='fish';
+	Cat10.prototype.skill=function (){
+		alert('卖萌~喵喵喵~~~');
+	};
+	var cat11=new Cat10();//实例化
+	var cat12=new Cat10();//实例化
+	// alert(cat11.color);// white
+	// alert(cat12.color);// white
+	// cat11.skill();
+	// cat12.skill();
+	// alert(cat11.skill===cat12.skill);//true
+
+	// 6.混合方式
+	function Cat(n,c){
+		this.name=n;
+		this.color=c;
+	}
+	Cat.prototype.food='fish';
+	Cat.prototype.skill=function (){
+		// alert('卖萌~喵喵喵~~~');
+		alert(this.name);
+	}
+	console.log(Cat.prototype);
+	var c1=new Cat('小白','yellow');
+	var c2=new Cat('小黑','white');
+	var c3=new Cat('小红','green');
+	// alert(c1.color);
+	// alert(c2.color);
+	// alert(c3.color);
+	// alert(c1.skill==c2.skill);
+	// alert(c1.skill==c3.skill);
+
+	c1.skill();
+	c2.skill();
+</script>
+</body>
+</html>

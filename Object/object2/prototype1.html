@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+	function Cat(){
+		this.name='小白';
+	}
+	Cat.prototype.color='white';
+	Cat.prototype.skill=function (){
+		alert('吃鱼');
+	};
+	var cat1=new Cat();//实例对象
+	// alert(cat1.color);
+	// console.log(Cat.prototype);
+	// console.log(cat1.prototype);
+	// console.log(cat1 instanceof Cat);//true
+	// console.log(cat1 instanceof Object);//true
+
+
+	var obj1={};
+	var obj2=new Object();
+
+	Object.prototype.abc='123';
+	var str='wegf';
+	var arr=['1','2','3'];
+	// alert(str.abc);//123
+	// alert(arr.abc);//123
+
+
+	// console.log(typeof arr);//object
+	// console.log(arr instanceof String);//false
+	// console.log(arr instanceof Array);//true
+	// console.log(arr.constructor==String);//false
+	console.log(arr.constructor==Array);//true
+
+	String.prototype.len=function (){
+		return this.length;
+	}
+	var str2='13234154';
+	// alert(str.len());
+	// alert(str2.len());
+	// alert(arr.len());//不能访问到
+
+	// console.log(str.__proto__);//String
+	// console.log(str.__proto__.__proto__);//Object
+	// console.log(str.__proto__.__proto__.__proto__);//null
+
+
+	// console.log(str.constructor);// String
+	// console.log(str.constructor.prototype.constructor);// String
+
+
+	Date.prototype.getWeek=function (){
+		var arr=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+		var index=this.getDay();//0-6
+		return arr[index];
+	}
+
+	var dates=new Date();
+	// alert(dates.getWeek());
+
+	Array.prototype.quchong=function (){
+		var arr=[];
+		this.sort(function (a,b){return a-b;});
+		for (var i = 0; i < this.length; i++) {
+			if (this[i]==this[i+1]) {
+				continue;
+			};
+			arr.push(this[i]);
+		};
+		return arr;
+	}
+	var arr1=[12,45,7,12,75,45,5,32,12];
+	// console.log(arr1.quchong());
+	
+</script>
+</body>
+</html>

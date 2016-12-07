@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+	// '猫'对象的构造函数
+	function Cat(){
+		this.color='yellow';
+		this.skill=function (){
+			alert('抓老鼠');
+		}
+	}
+
+	// '狗'对象的构造函数
+	function Dog(){
+		// Cat.call(this,'');//构造函数绑定
+		// Cat.apply(this,[]);
+		this.name='大黄';
+	}
+
+	/*var dog1=new Dog();
+	dog1.skill();
+	alert(dog1.color);*/
+
+
+	/*var cat1=new Cat();
+	var dog1=new Dog();
+	cat1.skill.call(dog1);
+	dog1.skill();
+	// alert(dog1.color);//获取不到*/
+
+	Dog.prototype=new Cat();//Dog'继承'Cat的属性和方法
+	Dog.prototype.constructor=Dog;
+	var dog1=new Dog();
+	console.log(dog1.constructor);
+	// dog1.skill();
+	// alert(dog1.color);
+
+</script>
+</body>
+</html>

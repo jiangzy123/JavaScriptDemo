@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>this指向</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+	<div style="width:300px; height: 100px; background:red;">点击我</div>
+</body>
+<script>
+var div1=document.getElementsByTagName('div')[0];
+
+
+function show(){
+	alert(this);
+}
+
+// var a='yy';
+// alert(window.a);
+
+// show();//window
+
+
+
+
+
+/*div1.onclick=function (){
+	 show();//window
+}*/
+
+
+
+
+/*div1.onclick=function (){
+	alert(this);//div
+}*/
+
+
+
+
+// div1.onclick=show;//div
+
+
+
+
+// var timer=setTimeout(show,1000);//window
+
+
+
+
+var arr=[1,2,3];
+arr.a=show;
+
+// arr.a();//arr
+
+
+
+
+/*div1.onclick=function (){
+	arr.a();//arr
+}*/
+
+
+
+
+
+// div1.onclick=arr.a;//div
+
+
+
+
+// setTimeout(arr.a,1000);//window
+
+
+// setTimeout('arr.a()',1000);//arr
+
+
+
+
+/*setTimeout(function (){
+	arr.a();//arr
+},1000);*/
+
+
+
+/*var name='taobao1';
+function Test(){
+	this.name='taobao2';
+	this.abc=function (){
+		setTimeout(function (){
+			alert(this.name);
+		},2000);
+	}
+}
+var s=new Test();//实例化
+s.abc();*/
+
+
+
+
+var name = "The Window";
+var object = {
+	name : "My Object",
+	getNameFunc : function(){
+		return function(){
+			return this.name;
+		};
+	}
+};
+alert(object.getNameFunc()());
+// alert((function(){return this.name;})());
+
+
+
+
+var name = "The Window";
+var object = {
+	name : "My Object",
+	getNameFunc : function(){
+		var _this = this;//this -> object
+		return function(){
+			return _this.name;
+		};
+	}
+};
+alert(object.getNameFunc()());
+</script>
+</html>

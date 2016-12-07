@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>tab-6</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>	
+*{margin:0; padding:0; list-style:none;}
+#tab,#tab2{
+	width: 600px;
+	margin: 50px auto 0;
+}
+.title{
+	overflow: hidden;
+}
+.title span{
+	float: left;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #ccc;
+	font-size: 20px;
+	color: green;
+	cursor: pointer;
+}
+.content{
+	height: 200px;
+	overflow: hidden;
+	background: #EBE8DD;
+}
+.content li{
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	font-size: 70px;
+	display: none;
+}
+
+/* 当前显示样式 */
+.title .select{
+	background: #D4A5BF;
+	color: #2A396F;
+}
+.content .show{
+	display: block;
+}
+</style>
+</head>
+<body>
+	<div id="tab">
+		<h1 id="title" class="title">
+			<span class="select">标题1</span>
+			<span>标题2</span>
+			<span>标题3</span>
+		</h1>
+		<ul id="content" class="content">
+			<li class="show">内容111</li>
+			<li>内容222</li>
+			<li>内容333</li>
+		</ul>
+	</div>
+	<div id="tab2">
+		<h1 class="title">
+			<span class="select">标题1</span>
+			<span>标题2</span>
+			<span>标题3</span>
+		</h1>
+		<ul class="content">
+			<li class="show">内容111</li>
+			<li>内容222</li>
+			<li>内容333</li>
+		</ul>
+	</div>
+<script>
+// 面向过程
+/*var tit=document.getElementById('title');
+var con=document.getElementById('content');
+var spans=tit.getElementsByTagName('span');
+var lis=con.getElementsByTagName('li');
+//第一个for循环 给每一个span绑定点击事件
+for (var i = 0,len=spans.length; i < len; i++) {
+	spans[i].onclick=function (){
+		// alert(i);//3
+		//第二个for循环 遍历找出当前点击的span
+		for (var v = 0; v < spans.length; v++) {
+			if (spans[v]==this) {//this为当前点击的span
+				this.className='select';
+				// spans[v].className='select';
+				lis[v].className='show';
+			} else{
+				spans[v].className='';
+				lis[v].className='';
+			};
+		};
+	}
+};*/
+
+
+// 1.创建构造函数
+function Tab(parentId){
+	// 2.把变量变成对象的属性
+	this.tab=document.getElementById(parentId);
+	this.spans=this.tab.getElementsByTagName('span');
+	this.lis=this.tab.getElementsByTagName('li');
+	var _this=this;//此时this指向实例对象
+	for (var i = 0,len=this.spans.length; i < len; i++) {
+		this.spans[i].onclick=function (){
+			_this.clickTab(this);//此时this指向点击的span
+		}
+	};
+}
+// 3.把函数变成对象的方法
+Tab.prototype.clickTab=function (Target){
+	for (var v = 0; v < this.spans.length; v++) {
+		if (this.spans[v]==Target) {
+			this.spans[v].className='select';
+			this.lis[v].className='show';
+		} else{
+			this.spans[v].className='';
+			this.lis[v].className='';
+		};
+	};
+}
+// 4.实例对象
+var tab1=new Tab('tab');
+var tab2=new Tab('tab2');
+</script>
+</body>
+</html>

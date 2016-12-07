@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<ul>
+	<li>aa</li>
+	<li>bb</li>
+	<li>cc</li>
+	<li>dd</li>
+	<li>ee</li>
+</ul>
+<script>
+var lis=document.getElementsByTagName('li');
+for (var i = 0; i < lis.length; i++) {
+	/*lis[i].index=i;
+	lis[i].onclick=function (){
+		alert(this.index);
+	}*/
+	(function (x){
+		lis[i].onclick=function (){//闭包
+			alert(x);
+		}
+	})(i);
+};
+</script>
+</body>
+</html>

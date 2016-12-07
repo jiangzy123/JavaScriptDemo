@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding: 0;}
+	div{width: 80px; height: 80px; background: green; position: absolute; cursor: move;}
+</style>
+</head> 
+<body>
+	<div id="box"></div>
+	<div id="box2"></div>
+	<div id="box3"></div>
+	<div id="box4"></div>
+	<p>科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭空间被科技部时快捷方便和科技部即可关闭空间关闭</p>
+</body>
+<script>
+	// 面向过程
+	/*var box=document.getElementById('box');
+	box.onmousedown=function (ev){
+		var e=ev||window.event;
+		if (e.preventDefault) {
+			e.preventDefault();
+		} else{
+			e.returnValue=false;
+		};
+		var d_bkx=e.clientX-box.offsetLeft;
+		var d_bky=e.clientY-box.offsetTop;
+		document.onmousemove=function (ev){
+			var e=ev||window.event;
+			// console.log(e.clientX);
+			var endx=e.clientX-d_bkx;
+			var endy=e.clientY-d_bky;
+			box.style.left=endx +'px';
+			box.style.top=endy +'px';
+		}
+		document.onmouseup=function (){
+			document.onmousemove=null;//释放mousemove事件
+		}
+	}*/
+
+	// 面向对象
+	function createDrag(targetId){
+		this.box=document.getElementById(targetId);
+		var _this=this;
+		this.box.onmousedown=function (e){
+			_this.fnDown(e);
+		}
+	}
+	createDrag.prototype.fnDown=function (e){
+		e.preventDefault();
+		this.d_bkx=e.clientX-this.box.offsetLeft;
+		this.d_bky=e.clientY-this.box.offsetTop;
+		var _this=this;
+		document.onmousemove=function (e){
+			_this.fnMove(e);
+		}
+		document.onmouseup=function (){
+			_this.fnUp();
+		}
+	}
+	createDrag.prototype.fnMove=function (e){
+		e.preventDefault();
+		var left=e.clientX-this.d_bkx;
+		var top=e.clientY-this.d_bky;
+		this.box.style.left=left+'px';
+		this.box.style.top=top+'px';
+	}
+	createDrag.prototype.fnUp=function (){
+		document.onmousemove=null;
+		document.onmouseup=null;
+	}
+
+	var Drag1=new createDrag('box');
+	var Drag2=new createDrag('box2');
+	var Drag3=new createDrag('box3');
+	var Drag4=new createDrag('box4');
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+
+<script>
+
+	/*function fn1(){
+		var x=5;
+		x++;
+		alert(x);
+	}
+	fn1();//6
+	fn1();//6
+	fn1();//6
+	fn1();//6*/
+
+	function fn1(){
+		var x=5;
+		xadd=function (){x+=2;}
+		function fn2(){//闭包
+			alert(x);
+		}
+		return fn2;
+	}
+	var fn=fn1();
+	fn();//5
+	xadd();
+	fn();//7
+	xadd();
+	fn();//9
+	fn();//9
+</script>
+</body>
+</html>
