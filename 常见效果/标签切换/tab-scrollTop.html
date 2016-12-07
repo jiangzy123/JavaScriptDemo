@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="reset.css">
+<style>
+#out{overflow: hidden; width: 400px; margin:50px auto 0;}
+#out p{float: left; width: 98px; height: 38px; border: 1px solid #000; line-height: 38px; text-align: center; font-size: 28px; cursor: pointer;}
+#out p:hover{color: red;}
+#con{width: 398px; height: 198px; overflow: hidden; border: 1px solid #000; margin:0 auto; overflow-y: hidden;}
+#con li{width: 398px; height: 198px; background: #ccc; line-height: 198px; text-align: center; font-size: 40px;}
+#out .select{color: #fff; background: green;}
+</style>
+</head>
+<body>
+	<div id="out">
+		<p class="select">标题1</p>
+		<p>标题2</p>
+		<p>标题3</p>
+		<p>标题4</p>
+	</div>
+	<ul id="con">
+		<li>内容111</li>
+		<li>内容222</li>
+		<li>内容333</li>
+		<li>内容444</li>
+	</ul>
+</body>
+<script>
+var out=document.getElementById('out');
+var ps=out.getElementsByTagName('p');
+var con=document.getElementById('con');
+var lis=con.getElementsByTagName('li');
+for (var i = 0; i < ps.length; i++) {
+	ps[i].onclick=function (){
+		for (var i = 0; i < ps.length; i++) {
+			if (ps[i]==this) {
+				ps[i].className='select';
+				con.scrollTop=lis[0].offsetHeight*i;
+			}else{
+				ps[i].className='';
+			}
+		};
+	}
+};
+</script>
+</html>

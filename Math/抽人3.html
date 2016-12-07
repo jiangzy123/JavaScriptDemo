@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin: 0;padding: 0; list-style: none;}
+	body{background: #000;}
+	#main{
+		width: 760px;
+		overflow: hidden;
+		margin: 60px auto 0;
+	}
+	ul{
+		float: left;
+		margin: 0 20px;
+	}
+	ul li{
+		width: 100px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		font-size: 30px;
+		color: green;
+		float: left;
+		margin: 10px;
+		background: #ccc;
+	}
+</style>
+</head>
+<body>
+<div id="main">
+	<ul>
+		<li>尹晓丽</li>
+		<li>李志远</li>
+		<li>唐星星</li>
+
+		<li>娄术梅</li>
+		<li>王敏</li>
+		<li>王士星</li>
+
+		<li>宋超</li>
+		<li>王晓晨</li>
+		<li>张黎明</li>
+
+		<li>孟姗姗</li>
+		<li>王昭</li>
+		<li>舒正超</li>
+		
+		<li>韩帅</li>
+		<li>周学民</li>
+		<li>李杰</li>
+
+		<li>黄琳琳</li>
+		<li>李国栋</li>
+		<li>赖学文</li>
+
+		<li>张赟崇</li>
+		<li>王若谷</li>
+		<li>丁浩</li>
+
+		<li>杜恩洋</li>
+		<li>成知涛</li>
+		<li>杜晨曦</li>
+
+		<li>张建和</li>
+		<li>王凯</li>
+		<li>张磊</li>
+
+		<li>尹振杰</li>
+		<li>焦桂林</li>
+		<li>孙文涵</li>
+		
+		<li>张翰林</li>
+		<li>周健康</li>
+		<li>李永佳</li>
+
+		<li>张金民</li>
+		<li>田超</li>
+		<li>刘近明</li>
+
+		<li>王晓哲</li>
+		<li>田冲</li>
+		<li>崔保康</li>
+
+		<li>韩天良</li>
+		<li>刘建东</li>
+		<li>贾琪</li>
+	</ul>
+</div>
+<script>
+	var main=document.getElementById('main');
+	var lis=main.getElementsByTagName('li');
+	var flg=0,a=60,timer=0,x=true;
+	function timer1 () {
+		x=false;
+		timer=setInterval(function() {
+			flg++;
+			if (flg>=lis.length) {
+				flg=0;
+			}
+			a+=20;
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.background="#ccc";
+				lis[i].style.color="green";
+			};
+			if(a!=500){
+				lis[flg].style.background='blue';
+				lis[flg].style.color='red';
+				clearInterval(timer);
+				timer1();
+			}else{
+				lis[flg].style.background='blue';
+				lis[flg].style.color='red';
+				clearInterval(timer);
+				a=60;
+				x=true;
+			}
+		},a)
+	}
+	document.onkeyup=function(ev) {
+		var event=ev||window.event
+		if(ev.keyCode==32&&x){
+			flg=Math.floor(Math.random()*42);
+			timer1();
+		}
+	}
+	document.onclick=function() {
+		if(x){
+			flg=Math.floor(Math.random()*42);
+			timer1();
+		}
+	}
+</script>
+</body>
+</html>
