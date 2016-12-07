@@ -1,0 +1,95 @@
+[JS脚本]ajax status 状态说明
+
+status 0**：未被始化
+
+status 1**：请求收到，继续处理
+
+status 2**：操作成功收到，分析、接受
+
+status 3**：完成此请求必须进一步处理
+
+status 4**：请求包含一个错误语法或不能完成
+
+status 5**：服务器执行一个完全有效请求失败
+
+status 100错误 客户必须继续发出请求(Continue)
+
+status 101错误 客户要求服务器根据请求转换HTTP协议版本(Switching protocols)
+
+status 200错误 交易成功(OK)
+
+status 201错误 提示知道新文件的URL(Created)
+
+status 202错误 接受和处理、但处理未完成(Accepted)
+
+status 203错误 返回信息不确定或不完整(Non-Authoritative Information)
+
+status 204错误 请求收到，但返回信息为空(No Content)
+
+status 205错误 服务器完成了请求，用户代理必须复位当前已经浏览过的文件(Reset Content)
+
+status 206错误 服务器已经完成了部分用户的GET请求(Partial Content)
+
+status 300错误 请求的资源可在多处得到(Multiple Choices)
+
+status 301错误 删除请求数据(Moved Permanently)
+
+status 302错误 在其他地址发现了请求数据(Found)
+
+status 303错误 建议客户访问其他URL或访问方式(See Other)
+
+status 304错误 客户端已经执行了GET，但文件未变化(Not Modified)
+
+status 305错误 请求的资源必须从服务器指定的地址得到(Use Proxy)
+
+status 306错误 前一版本HTTP中使用的代码，现行版本中不再使用
+
+status 307错误 申明请求的资源临时性删除(Temporary Redirect)
+
+status 400错误 错误请求，如语法错误(Bad Request)
+
+status 401错误 请求授权失败(Unauthorized)
+
+status 402错误 保留有效ChargeTo头响应(Payment Required)
+
+status 403错误 请求不允许(由于服务器上文件或目录的权限设置导致资源不可用)(Forbidden)
+
+status 404错误 没有发现文件、查询或URl(没有找到指定的资源)(Not Found)
+
+status 405错误 用户在Request-Line字段定义的方法不允许(Method Not Allowed)
+
+status 406错误 根据用户发送的Accept拖，请求资源不可访问(Not Acceptable)
+
+status 407错误 类似401，用户必须首先在代理服务器上得到授权(Proxy Authentication Required)
+
+status 408错误 客户端没有在用户指定的饿时间内完成请求(Request Timeout)
+
+status 409错误 对当前资源状态，请求不能完成(Conflict)
+
+status 410错误 服务器上不再有此资源且无进一步的参考地址(Gone)
+
+status 411错误 服务器拒绝用户定义的Content-Length属性请求(Length Required)
+
+status 412错误 一个或多个请求头字段在当前请求中错误(Precondition Failed)
+
+status 413错误 请求的资源大于服务器允许的大小(Request Entity Too Large)
+
+status 414错误 请求的资源URL长于服务器允许的长度(Request-URI Too Long)
+
+status 415错误 请求资源不支持请求项目格式(Unsupported Media Type)
+
+status 416错误 请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段(Requested Range Not Suitable)
+
+status 417错误 服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求(Expectation Failed)
+
+status 500错误 服务器产生内部错误(Internal Server Error)
+
+status 501错误 服务器不支持请求的函数(Not Implemented)
+
+status 502错误 服务器暂时不可用，有时是为了防止发生系统过载(Bad Gateway)
+
+status 503错误 服务器过载或暂停维修(Service Unavailable)
+
+status 504错误 关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长(Gateway Timeout)
+
+status 505错误 服务器不支持或拒绝支请求头中指定的HTTP版本(HTTP Version Not Supported )

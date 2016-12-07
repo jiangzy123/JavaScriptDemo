@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#box{
+		width: 500px;
+		margin: 50px auto 0;
+	}
+	#ipt{
+		width: 480px;
+		height: 30px;
+		padding: 0 8px;
+		line-height: 30px;
+		font-size: 18px;
+	}
+	#list{
+		background: #e3e3e3;
+	}
+	#list li{
+		line-height: 26px;
+		font-size: 16px;
+		color: blue;
+		padding: 0 10px;
+	}
+	#list li:hover{
+		background: #ccc;
+	}
+</style>
+</head>
+<body>
+<div id="box">
+	<input type="text" name="" value="" id="ipt">
+	<ul id="list">
+		<!-- <li>12306</li> -->
+		<!-- <li>hao123</li> -->
+	</ul>
+</div>
+<script type="text/javascript" src="ajax.js"></script>
+<script>
+	var ipt=document.getElementById('ipt');
+	var list=document.getElementById('list');
+	ipt.onkeyup=function (){
+		list.innerHTML='';
+		ajax('baidu.php?wd='+ipt.value+'&t='+new Date().getTime(),function (str){
+			var json=JSON.parse(str);
+			for (var i = 0; i < json.s.length; i++) {
+				list.innerHTML+='<li>'+json.s[i]+'</li>';
+			};
+		});
+	}
+</script>
+</body>
+</html>

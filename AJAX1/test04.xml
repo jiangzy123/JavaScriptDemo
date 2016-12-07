@@ -1,0 +1,26 @@
+<persons>
+	<person>
+		<name>老王</name>
+		<sex>女</sex>
+		<age>19</age>
+		<score>66</score>
+	</person>
+	<person>
+		<name>老刘</name>
+		<sex>男</sex>
+		<age>23</age>
+		<score>75</score>
+	</person>
+	<person>
+		<name>老李</name>
+		<sex>女</sex>
+		<age>24</age>
+		<score>88</score>
+	</person>
+	<person>
+		<name>老张</name>
+		<sex>男</sex>
+		<age>31</age>
+		<score>94</score>
+	</person>
+</persons>

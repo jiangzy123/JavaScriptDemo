@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<button id="btn">请求数据</button>
+<ul id="list"></ul>
+<script>
+	var btn=document.getElementById('btn');
+	var list=document.getElementById('list');
+	btn.onclick=function (){
+		// 1.创建XMLHttpRequest对象
+		var xhr=null;
+		if (window.XMLHttpRequest) {// 非IE5/6
+			xhr=new XMLHttpRequest();//实例对象
+		} else{// IE5/6
+			xhr=new ActiveXObject('Microsoft.XMLHTTP');
+		};
+		// 2.打开与服务器的链接
+		xhr.open('get','test2.json?_='+new Date().getTime(),true);//生成不一样的url解决缓存问题
+		// 3.发送给服务器
+		xhr.send(null);//get请求
+		// 4.响应就绪
+		xhr.onreadystatechange=function (){
+			if (xhr.readyState==4) {//请求完成
+				if (xhr.status==200) {//ok
+					var json=JSON.parse(xhr.responseText);//解析成json对象
+					for (var i = 0; i < json.name.length; i++) {
+						list.innerHTML+='<li>姓名:'+json.name[i]+'， 性别:'+json.sex[i]+'， 年龄:'+json.age[i]+'， 成绩:'+json.score[i]+'</li>';
+					};
+				} else{
+					alert(xhr.status);
+				};
+			};
+		}
+	}
+</script>
+</body>
+</html>

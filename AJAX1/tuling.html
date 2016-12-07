@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>tuling对话</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style type="text/css">
+	*{margin:0; padding:0; list-style:none;}
+	#wrap{width: 500px; background: #e3e3e3; margin:20px auto 0; padding:10px;}
+	#inpt{width: 480px; height: 30px; line-height: 30px; padding:0 7px; font-size: 18px;}
+	#list{margin-top: 10px; overflow: hidden;}
+	#list li{font-size: 16px; line-height: 150%;}
+	#list .me{background: #ccc; color: blue; text-align: right;}
+	#list .pc{color: #333;}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<input id="inpt" type="text">
+	<ul id="list">
+		<!-- <li class="me">me：你是谁？</li> -->
+		<!-- <li class="pc">pc：我是机器人...</li> -->
+	</ul>
+</div>
+
+<script>
+var inpt=document.getElementById('inpt');
+var list=document.getElementById('list');
+
+document.onkeyup=function (ev){
+	var e=ev||window.event;
+	// console.log(e.keyCode);//13回车
+	if (e.keyCode==13) {
+		if (inpt.value=='') {
+			alert('请输入内容！');
+		} else {
+			sendMsg();
+			inpt.value='';
+		}
+	}
+}
+
+function sendMsg(){
+	var myMsg=document.createElement('li');
+	myMsg.className='me';
+	myMsg.innerHTML='me：'+inpt.value;
+	list.appendChild(myMsg);
+	var xhr=null;
+	if (window.XMLHttpRequest) {//非IE 5/6
+		xhr=new XMLHttpRequest();
+	} else {//IE 5/6
+		xhr=new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	var Url='http://www.tuling123.com/openapi/api?key=fb6b7bcfbe52fccdb7f5d752a3088f75&info='+inpt.value+'&userid=1234567';
+	xhr.open('get',Url,true);
+	xhr.send(null);
+	xhr.onreadystatechange=function (){
+		if (xhr.readyState==4) {
+			if (xhr.status==200) {
+				var data=JSON.parse(xhr.responseText).text;
+				var pcMsg=document.createElement('li');
+				pcMsg.className='pc';
+				pcMsg.innerHTML='pc：'+data;
+				list.appendChild(pcMsg);
+			} else {
+				alert(xhr.status);
+			}	
+		}
+	}
+}
+</script>
+</body>
+</html>

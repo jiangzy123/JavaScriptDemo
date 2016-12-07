@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<button id="btn">请求数据</button>
+<h1 id="list"></h1>
+<script type="text/javascript" src="ajax.js"></script>
+<script>
+	var btn=document.getElementById('btn');
+	var list=document.getElementById('list');
+	btn.onclick=function (){
+		var Url='test05.php';
+		ajax(Url,function (str){
+			var json=JSON.parse(str);
+			list.innerHTML=json.name;
+		},function (){
+			alert('连接失败');
+		});
+	}
+</script>
+</body>
+</html>

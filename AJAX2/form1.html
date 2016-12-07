@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	
+</style>
+</head>
+<body>
+<div id="form">
+	账号：<input type="text" name="" value=""><br>
+	密码：<input type="text" name="" value=""><br>
+	<button id="btn">登录</button>
+</div>
+<script type="text/javascript" src="ajax.js"></script>
+<script>
+	var form=document.getElementById('form');
+	var btn=document.getElementById('btn');
+	var user=form.getElementsByTagName('input')[0];
+	var pass=form.getElementsByTagName('input')[1];
+	btn.onclick=function (){
+		ajax('form.php?user='+user.value+'&pass='+pass.value,function (str){
+			alert(str);
+		});
+	}
+</script>
+</body>
+</html>
